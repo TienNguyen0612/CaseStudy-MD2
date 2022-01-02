@@ -1,8 +1,9 @@
 package _Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Bill {
+public class Bill implements Serializable {
     public static int VALUE;
     private int idBill;
     private String customerName, staffName;

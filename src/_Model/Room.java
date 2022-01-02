@@ -1,6 +1,8 @@
 package _Model;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
     public static int VALUE;
     private int id, numberBedrooms, numberToilets;
     String roomName, roomStatus;
