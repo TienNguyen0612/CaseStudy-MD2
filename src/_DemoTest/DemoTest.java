@@ -33,6 +33,9 @@ public class DemoTest {
                     double above = scanner.nextDouble();
                     roomManager.searchByPriceAndStatus(low, above);
                     break;
+                case 5:
+                    roomManager.displayAll();
+                    break;
             }
         } while (choice != 0);
     }
