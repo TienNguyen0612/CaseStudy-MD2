@@ -33,14 +33,11 @@ public class RoomManager {
             case 3:
                 status = "Đang sửa";
                 break;
-            case 4:
-                status = "Đã thuê";
-                break;
         }
         return status;
     }
 
-    public Room addRoom() {
+    public void addRoom() {
         Room.VALUE = setValue();
         System.out.println("Nhập tên phòng:");
         String roomName = scanner.nextLine();
@@ -54,13 +51,11 @@ public class RoomManager {
         System.out.println("1. Sẵn sàng");
         System.out.println("2. Đang trống");
         System.out.println("3. Đang sửa");
-        System.out.println("4. Đã thuê");
         int status = scanner.nextInt();
-        scanner.nextLine();
         for (Room room1 : roomList) {
             if (room1.getRoomName().equals(roomName)) {
                 System.out.println("Tên phòng bị trùng, mời nhập lại !!!");
-                return null;
+                return;
             }
         }
         Room room = new Room(roomName, numberBedrooms, numberToilets, rentalPrice, getStatus(status));
@@ -68,10 +63,9 @@ public class RoomManager {
         ioFile.writeFile(roomList, PATHNAME_ROOM);
         writeValue();
         System.out.println("Thêm phòng " + roomName + " thành công !!!");
-        return room;
     }
 
-    public Room editRoom(int id) {
+    public void editRoom(int id) {
         Room editRoom = null;
         for (Room room : roomList) {
             if (room.getId() == id) {
@@ -92,30 +86,28 @@ public class RoomManager {
             System.out.println("1. Sẵn sàng");
             System.out.println("2. Đang trống");
             System.out.println("3. Đang sửa");
-            System.out.println("4. Đã thuê");
             int status = scanner.nextInt();
             scanner.nextLine();
             for (Room room : roomList) {
                 if (room.getRoomName().equals(editRoom.getRoomName())) {
                     System.out.println("Tên phòng bị trùng, mời nhập lại !!!");
-                    return null;
+                    return;
                 }
             }
             editRoom.setRoomStatus(getStatus(status));
             roomList.set(index, editRoom);
             ioFile.writeFile(roomList, PATHNAME_ROOM);
         }
-        return editRoom;
     }
 
-    public void displayAll() {
+    public void displayRoomList() {
         if (roomList.isEmpty()) {
             System.out.println("Danh sách phòng chưa được cập nhật !!!");
             return;
         }
-        System.out.printf("| %-10S%-10S%S |", "Tên", "Giá", "Trạng thái");
+        System.out.printf("| %-10s%-10s%s |", "Tên", "Giá", "Trạng thái");
         for (Room room : roomList) {
-            System.out.printf("| %-10s%-10f%s |", room.getRoomName(), room.getRentalPrice(), room.getRoomStatus());
+            System.out.printf("| %-10s%-10s%s |", room.getRoomName(), room.getRentalPrice(), room.getRoomStatus());
             System.out.println();
         }
     }
@@ -130,7 +122,7 @@ public class RoomManager {
             }
         }
         if (checkRoom) {
-            System.out.printf("| %-10S%-10S%S |", "Tên", "Giá", "Trạng thái");
+            System.out.printf("| %-10s%-10s%s |", "Tên", "Giá", "Trạng thái");
             for (Room room : rooms) {
                 System.out.printf("| %-10s%-10f%s |", room.getRoomName(), room.getRentalPrice(), room.getRoomStatus());
                 System.out.println();
@@ -154,10 +146,15 @@ public class RoomManager {
     public int setValue() {
         try {
             String PATH_NAME = "FileData/valueRoom.txt";
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH_NAME));
-            int i;
-            if ((i = bufferedReader.read()) != -1) {
-                return i;
+            File file = new File(PATH_NAME);
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                int i;
+                if ((i = bufferedReader.read()) != -1) {
+                    return i;
+                }
             }
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());

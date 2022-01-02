@@ -5,24 +5,25 @@ import java.time.LocalDate;
 public class Bill {
     public static int VALUE;
     private int idBill;
-    private String roomName, customerName, staffName;
+    private String customerName, staffName;
     private LocalDate startDate, endDate;
+    private Room room;
 
     public Bill() {
     }
 
-    public Bill(String roomName, String customerName, String staffName, LocalDate startDate, LocalDate endDate) {
+    public Bill(Room room, String customerName, String staffName, LocalDate startDate, LocalDate endDate) {
         this.idBill = ++VALUE;
-        this.roomName = roomName;
+        this.room = room;
         this.customerName = customerName;
         this.staffName = staffName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Bill(int idBill, String roomName, String customerName, String staffName, LocalDate startDate, LocalDate endDate) {
+    public Bill(int idBill, Room room, String customerName, String staffName, LocalDate startDate, LocalDate endDate) {
         this.idBill = idBill;
-        this.roomName = roomName;
+        this.room = room;
         this.customerName = customerName;
         this.staffName = staffName;
         this.startDate = startDate;
@@ -33,12 +34,12 @@ public class Bill {
         return idBill;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public String getCustomerName() {
@@ -73,15 +74,20 @@ public class Bill {
         this.endDate = endDate;
     }
 
+    public double getTotalPrice() {
+        return (room.getRentalPrice() * (endDate.getDayOfYear() - startDate.getDayOfYear()));
+    }
+
     @Override
     public String toString() {
         return "Bill{" +
                 "idBill=" + idBill +
-                ", roomName='" + roomName + '\'' +
+                ", roomName='" + room.getRoomName() + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", staffName='" + staffName + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", Total=" + getTotalPrice() +
                 '}';
     }
 }

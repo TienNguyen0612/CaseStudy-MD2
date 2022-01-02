@@ -15,9 +15,14 @@ public class IOFile<E> {
     }
 
     public ArrayList<E> readFile(String pathName) {
+        File file = new File(pathName);
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(pathName));
-            return (ArrayList<E>) objectInputStream.readObject();
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+                return (ArrayList<E>) objectInputStream.readObject();
+            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println();
         }
