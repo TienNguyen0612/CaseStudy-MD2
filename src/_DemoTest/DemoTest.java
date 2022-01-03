@@ -16,8 +16,7 @@ public class DemoTest {
         int choice;
         do {
             System.out.println("Nhập lựa chọn:");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
                     System.out.println("Nhập room:");
