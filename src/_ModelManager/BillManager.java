@@ -8,6 +8,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class BillManager {
@@ -17,7 +18,11 @@ public class BillManager {
     private final IOFile<Bill> ioFile = new IOFile<>();
 
     public BillManager() {
-        this.billList = ioFile.readFile(PATHNAME_BILL);
+        if (new File(PATHNAME_BILL).length() == 0) {
+            this.billList = new ArrayList<>();
+        } else {
+            this.billList = ioFile.readFile(PATHNAME_BILL);
+        }
     }
 
     public ArrayList<Bill> getBillList() {
@@ -46,7 +51,7 @@ public class BillManager {
         return check;
     }
 
-    public Bill addBill(Room room) {
+    public void addBill(Room room) {
         Bill.VALUE = setValue();
         System.out.println("Nhập tên khách thuê:");
         String customerName = scanner.nextLine();
@@ -56,10 +61,10 @@ public class BillManager {
         LocalDate endDate = null;
         try {
             System.out.println("Nhập ngày bắt đầu(dd-mm-yyyy):");
-            String start = scanner.next();
+            String start = scanner.nextLine();
             startDate = LocalDate.parse(start, DateTimeFormatter.ofPattern("dd-LL-yyyy"));
             System.out.println("Nhập ngày kết thúc(dd-mm-yyyy):");
-            String end = scanner.next();
+            String end = scanner.nextLine();
             endDate = LocalDate.parse(end, DateTimeFormatter.ofPattern("dd-LL-yyyy"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -73,13 +78,15 @@ public class BillManager {
             ioFile.writeFile(billList, PATHNAME_BILL);
             writeValue();
             System.out.println("Thêm bill của khách hàng " + customerName + " thành công !!!");
+            System.out.println("--------------------");
         } else {
-            System.out.println("Phòng đang sửa hoặc nhập sai dữ liệu, mời nhập lại !!!");
+            System.out.println("- Phòng đang sửa hoặc đã có người thuê");
+            System.out.println("- Nhập sai dữ liệu, xin mời nhập lại !!!");
+            System.out.println("--------------------");
         }
-        return bill;
     }
 
-    public Bill editBill(int id) {
+    public void editBill(int id) {
         Bill editBill = null;
         for (Bill bill : billList) {
             if (bill.getIdBill() == id) {
@@ -104,44 +111,68 @@ public class BillManager {
             }
             billList.set(index, editBill);
             ioFile.writeFile(billList, PATHNAME_BILL);
+            System.out.println("Sửa thành công !!!");
+            System.out.println("--------------------");
         }
-        return editBill;
     }
 
     public void displayBillList() {
         if (billList.isEmpty()) {
             System.out.println("Danh sách bill chưa được cập nhật !!!");
+            System.out.println("--------------------");
             return;
         }
-        System.out.printf("| %-10s%-10s%-10s%-10s%-10s%-10s%s |", "Id", "Room", "Customer", "Staff", "Check-in", "Check-out", "Total");
+        System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15s|\n", "Id", "Room", "Customer", "Staff", "Check-in", "Check-out", "Total");
+        System.out.println("--------------------------------------------------------------------------------");
         for (Bill bill : billList) {
-            System.out.printf("| %-10s%-10s%-10s%-10s%-10s%-10s%s |", bill.getIdBill(), bill.getRoom().getRoomName(), bill.getCustomerName(), bill.getStaffName(), bill.getStartDate(), bill.getEndDate(), bill.getTotalPrice());
+            System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15.2f|", bill.getIdBill(), bill.getRoom().getRoomName(), bill.getCustomerName(), bill.getStaffName(), bill.getStartDate(), bill.getEndDate(), bill.getTotalPrice());
             System.out.println();
+            System.out.println("--------------------------------------------------------------------------------");
         }
     }
 
-    public double getTotalBillInAMonth(int month, int year) {
+    public void getTotalBillInAMonth(int month, int year) {
         double totalBill = 0;
         for (Bill bill : billList) {
             if (bill.getStartDate().getMonth().getValue() == month && bill.getStartDate().getYear() == year) {
                 totalBill += bill.getRoom().getRentalPrice() * (bill.getEndDate().getDayOfYear() - bill.getStartDate().getDayOfYear());
             }
         }
-        return totalBill;
+        System.out.println("Tổng doanh thu tháng " + month + "/" + year + ": " + totalBill);
+        System.out.println("--------------------");
     }
 
     public void checkRoomStatus(String name, LocalDate beforeDate, LocalDate afterDate) {
         ArrayList<Bill> billArrayList = new ArrayList<>();
+        boolean check = false;
+        if (beforeDate.isAfter(afterDate)) {
+            System.out.println("Nhập sai dữ liệu, mời nhập lại !!!");
+            System.out.println("--------------------");
+            return;
+        }
         for (Bill bill : billList) {
             if (bill.getRoom().getRoomName().equals(name)) {
                 billArrayList.add(bill);
+                check = true;
             }
         }
-        billArrayList.removeIf(bill -> bill.getEndDate().isBefore(beforeDate) || bill.getStartDate().isAfter(afterDate));
-        System.out.println("Trạng thái phòng từ " + beforeDate + " đến " + afterDate + ":");
-        for (Bill bill : billArrayList) {
-            System.out.println("Từ " + bill.getStartDate() + " đến " + bill.getEndDate() + ": 'Đã thuê'");
+        if (check) {
+            billArrayList.removeIf(bill -> bill.getEndDate().isBefore(beforeDate) || bill.getStartDate().isAfter(afterDate));
+            billArrayList.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
+            System.out.println("Trạng thái phòng " + name + " từ " + beforeDate + " đến " + afterDate + ":");
+            System.out.println();
+            System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
+            System.out.println("----------------------------------------------------");
+            for (Bill bill : billArrayList) {
+                System.out.printf("| %-15s| %-15s| %-15s|", bill.getStartDate(), bill.getEndDate(), "Đã thuê");
+                System.out.println();
+                System.out.println("----------------------------------------------------");
+            }
+        } else {
+            System.out.println("Không tìm thấy phòng nào !!!");
+            System.out.println("--------------------");
         }
+
     }
 
     public void writeValue() {
@@ -158,10 +189,15 @@ public class BillManager {
     public int setValue() {
         try {
             String PATH_NAME = "FileData/valueBill.txt";
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH_NAME));
-            int i;
-            if ((i = bufferedReader.read()) != -1) {
-                return i;
+            File file = new File(PATH_NAME);
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH_NAME));
+                int i;
+                if ((i = bufferedReader.read()) != -1) {
+                    return i;
+                }
             }
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
