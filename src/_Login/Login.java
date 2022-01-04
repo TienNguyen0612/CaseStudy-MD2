@@ -6,8 +6,8 @@ import _Account.AccountUserManager;
 import _Account.UserManager;
 import _Systems.RunByAdmin;
 import _Systems.RunByUser;
+import _Validate.Validate;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,6 +18,7 @@ public class Login {
     private final AccountAdmin accountAdmin = new AccountAdmin();
     private final AccountUserManager accountUserManager = new AccountUserManager();
     private final UserManager userManager = new UserManager();
+    private final Validate validate = new Validate();
 
     public Login() {
     }
@@ -189,6 +190,5 @@ public class Login {
     private void writeAccountUserAndUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
         accountUserManager.setListUser(accountUser, passwordUser);
         userManager.setListUser(accountUser, passwordUser, name, age, address, phoneNumber, email);
-
     }
 }
