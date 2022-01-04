@@ -2,14 +2,15 @@ package _Account;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User extends AccountUser implements Serializable {
     private String name, address, phoneNumber, email;
     private int age;
 
     public User() {
     }
 
-    public User(String name, int age, String address, String phoneNumber, String email) {
+    public User(String account, String password, String name, int age, String address, String phoneNumber, String email) {
+        super(account, password);
         this.name = name;
         this.age = age;
         this.address = address;
@@ -60,7 +61,9 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User: " +
-                "name = '" + name + '\'' +
+                "account = '" + super.getAccount() + '\'' +
+                ", password = " + super.getPassword() + '\'' +
+                ", name = '" + name + '\'' +
                 ", age = " + age +
                 ", address = '" + address + '\'' +
                 ", phoneNumber = '" + phoneNumber + '\'' +

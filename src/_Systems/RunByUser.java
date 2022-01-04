@@ -1,10 +1,12 @@
 package _Systems;
 
+import _Login.Login;
 import _ModelManager.BillManager;
 import _ModelManager.RoomManager;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +22,7 @@ public class RunByUser {
         try {
             do {
                 int choice = choiceOfUser();
+                scanner.nextLine();
                 if (choice < 0 || choice > 3) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
@@ -36,15 +39,15 @@ public class RunByUser {
                         checkRoomStatus();
                         break;
                     case 0:
-
+                        exitOfUser();
+                        break;
                 }
             } while (true);
-        } catch (InputMismatchException ie) {
+        } catch (InputMismatchException | DateTimeParseException e) {
             System.out.println();
             System.err.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
-            scanner.nextLine();
             menuOfUser();
         }
     }
@@ -60,6 +63,15 @@ public class RunByUser {
         return scanner.nextInt();
     }
 
+    private void exitOfUser() {
+        System.out.println();
+        System.out.println("Đã thoát khỏi hệ thống USER !!!");
+        System.out.println("--------------------");
+        System.out.println();
+        (new Login()).loginSystems();
+        System.out.println();
+    }
+
     private void searchRoomByPrice() throws InputMismatchException {
         System.out.println("Nhập giá dưới:");
         double lowerPrice = scanner.nextDouble();
@@ -73,7 +85,7 @@ public class RunByUser {
         roomManager.searchByPriceAndStatus(lowerPrice, abovePrice);
     }
 
-    private void checkRoomStatus() throws InputMismatchException {
+    private void checkRoomStatus() throws InputMismatchException, DateTimeParseException {
         System.out.println("Nhập tên phòng:");
         String name = scanner.nextLine();
         System.out.println("Nhập ngày bắt đầu(dd-mm-yyyy):");

@@ -1,11 +1,14 @@
 package _Systems;
 
+import _Account.UserManager;
+import _Login.Login;
 import _Model.Room;
 import _ModelManager.BillManager;
 import _ModelManager.RoomManager;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,6 +16,7 @@ public class RunByAdmin {
     private final Scanner scan = new Scanner(System.in);
     private final BillManager billManager = new BillManager();
     private final RoomManager roomManager = new RoomManager();
+    private final UserManager userManager = new UserManager();
 
     public RunByAdmin() {
     }
@@ -21,7 +25,7 @@ public class RunByAdmin {
         try {
             do {
                 int choice = choiceOfAdmin();
-                if (choice < 0 || choice > 2) {
+                if (choice < 0 || choice > 3) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
@@ -32,6 +36,12 @@ public class RunByAdmin {
                         break;
                     case 2:
                         menuBillManager();
+                        break;
+                    case 3:
+                        userManager.displayUserList();
+                        break;
+                    case 0:
+                        exitOfAdmin();
                         break;
                 }
             } while (true);
@@ -50,10 +60,19 @@ public class RunByAdmin {
         System.out.println("----------HỆ THỐNG ADMIN----------");
         System.out.println("1. Quản lý phòng");
         System.out.println("2. Quản lý hóa đơn");
-        System.out.println("3. Quản lý người dùng");
+        System.out.println("3. Hiển thị thông tin ");
         System.out.println("0. Đăng xuất");
         System.out.println("Mời bạn nhập lựa chọn:");
         return scan.nextInt();
+    }
+
+    private void exitOfAdmin() {
+        System.out.println();
+        System.out.println("Đã thoát khỏi hệ thống Admin !!!");
+        System.out.println("--------------------");
+        System.out.println();
+        (new Login()).loginSystems();
+        System.out.println();
     }
 
     //Menu quản lý phòng
@@ -71,7 +90,7 @@ public class RunByAdmin {
                 System.out.println("Mời bạn nhập lựa chọn:");
                 int choiceRoom = scan.nextInt();
                 scan.nextLine();
-                if (choiceRoom < 0 || choiceRoom > 6) {
+                if (choiceRoom < 0 || choiceRoom > 7) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
@@ -118,14 +137,19 @@ public class RunByAdmin {
                         LocalDate afterDate = LocalDate.parse(after, DateTimeFormatter.ofPattern("dd-LL-yyyy"));
                         billManager.checkRoomStatus(name, beforeDate, afterDate);
                         break;
+                    case 7:
+                        roomManager.displayAll();
+                        break;
+                    case 0:
+                        menuOfAdmin();
+                        break;
                 }
             } while (true);
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchException | DateTimeParseException e) {
             System.out.println();
             System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
-            scan.nextLine();
             menuRoomManager();
         }
     }
@@ -181,14 +205,16 @@ public class RunByAdmin {
                             billManager.getTotalBillInAMonth(month, year);
                         }
                         break;
+                    case 0:
+                        menuOfAdmin();
+                        break;
                 }
             } while (true);
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchException |NullPointerException e) {
             System.out.println();
             System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
-            scan.nextLine();
             menuBillManager();
         }
     }

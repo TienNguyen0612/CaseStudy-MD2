@@ -16,14 +16,28 @@ public class UserManager {
         return ioFile.readFile(PATHNAME_OF_USER);
     }
 
-    public void setListUser(String name, int age, String address, String phoneNumber, String email) {
+    public void displayUserList() {
+        if (userList.isEmpty()) {
+            System.out.println("Chưa có người dùng nào đăng ký !!!");
+            System.out.println("--------------------");
+        } else {
+            System.out.printf("| %-15s| %-15s| %-15s| %-15s|\n", "Tên", "Tài khoản", "Tuổi", "Số điện thoại");
+            System.out.println("---------------------------------------------------------------------");
+            for (User user : userList) {
+                System.out.printf("| %-15s| %-15s| %-15d| %-15s|\n", user.getName(), user.getAccount(), user.getAge(), user.getPhoneNumber());
+                System.out.println("---------------------------------------------------------------------");
+            }
+        }
+    }
+
+    public void setListUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
         ArrayList<User> users;
         if (checkFile()) {
             users = userList;
         } else {
             users = getUserList();
         }
-        users.add(new User(name, age, address, phoneNumber, email));
+        users.add(new User(accountUser,passwordUser, name, age, address, phoneNumber, email));
         ioFile.writeFile(users, PATHNAME_OF_USER);
     }
 
