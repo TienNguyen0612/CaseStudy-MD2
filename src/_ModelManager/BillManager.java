@@ -30,7 +30,7 @@ public class BillManager {
     }
 
     public boolean checkRoom(String status) {
-        return (status.equals("Đang trống") || status.equals("Sẵn sàng"));
+        return (status.equals("Đang trống"));
     }
 
     public boolean checkDate(String name, LocalDate start, LocalDate end) {
@@ -116,6 +116,24 @@ public class BillManager {
         }
     }
 
+    public void deleteByIdBill(int id) {
+        Bill bill = null;
+        for (Bill bill1 : billList) {
+            if (bill1.getIdBill() == id) {
+                bill = bill1;
+            }
+        }
+        if (bill != null) {
+            billList.remove(bill);
+            ioFile.writeFile(billList, PATHNAME_BILL);
+            System.out.println("Xóa bill " + id + " thành công !!!");
+            System.out.println("--------------------");
+        } else {
+            System.out.println("Không tìm thấy Id cần xóa !!!");
+            System.out.println("--------------------");
+        }
+    }
+
     public void displayBillList() {
         if (billList.isEmpty()) {
             System.out.println("Danh sách bill chưa được cập nhật !!!");
@@ -135,7 +153,7 @@ public class BillManager {
         double totalBill = 0;
         for (Bill bill : billList) {
             if (bill.getStartDate().getMonth().getValue() == month && bill.getStartDate().getYear() == year) {
-                totalBill += bill.getRoom().getRentalPrice() * (bill.getEndDate().getDayOfYear() - bill.getStartDate().getDayOfYear());
+                totalBill += bill.getTotalPrice();
             }
         }
         System.out.println("Tổng doanh thu tháng " + month + "/" + year + ": " + totalBill);

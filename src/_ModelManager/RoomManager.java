@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomManager {
-    public static final String PATHNAME_ROOM = "FileData/rooms";
+    public static final String PATHNAME_ROOM = "FileData/room";
     private final ArrayList<Room> roomList;
     private final Scanner scanner = new Scanner(System.in);
     private final IOFile<Room> ioFile = new IOFile<>();
@@ -115,7 +115,7 @@ public class RoomManager {
         }
     }
 
-    public void deleteById(int id) {
+    public void deleteByIdRoom(int id) {
         Room room = null;
         for (Room room1 : roomList) {
             if (room1.getId() == id) {
@@ -125,7 +125,6 @@ public class RoomManager {
         if (room != null) {
             roomList.remove(room);
             ioFile.writeFile(roomList, PATHNAME_ROOM);
-            writeValue();
             System.out.println("Xóa thành công !!!");
             System.out.println("--------------------");
         } else {
@@ -154,7 +153,7 @@ public class RoomManager {
         boolean checkRoom = false;
         for (Room room : roomList) {
             if (room.getRentalPrice() >= lowerPrice && room.getRentalPrice() <= abovePrice
-                    && (room.getRoomStatus().equals("Đang trống") || room.getRoomStatus().equals("Sẵn sàng"))) {
+                    && room.getRoomStatus().equals("Đang trống")) {
                 rooms.add(room);
                 checkRoom = true;
             }
@@ -174,6 +173,11 @@ public class RoomManager {
     }
 
     public void displayAll() {
+        if (roomList.isEmpty()) {
+            System.out.println("Danh sách phòng chưa được cập nhật !!!");
+            System.out.println("--------------------");
+            return;
+        }
         roomList.forEach(System.out::println);
         System.out.println("--------------------");
     }
