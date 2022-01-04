@@ -178,7 +178,7 @@ public class BillManager {
             billArrayList.removeIf(bill -> bill.getEndDate().isBefore(beforeDate) || bill.getStartDate().isAfter(afterDate));
             billArrayList.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
             System.out.println("Trạng thái phòng " + name + " từ " + beforeDate + " đến " + afterDate + ":");
-            System.out.println();
+            if (!billArrayList.isEmpty()) {
                 System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
                 System.out.println("----------------------------------------------------");
                 for (Bill bill : billArrayList) {
@@ -186,6 +186,10 @@ public class BillManager {
                     System.out.println();
                     System.out.println("----------------------------------------------------");
                 }
+            } else {
+                System.out.println("Đang trống !!!");
+                System.out.println("--------------------");
+            }
         } else {
             System.out.println("- Phòng đã thuê hoặc đang sửa !!!");
             System.out.println("- Không tìm thấy phòng !!!");

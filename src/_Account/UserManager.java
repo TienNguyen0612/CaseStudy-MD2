@@ -2,18 +2,24 @@ package _Account;
 
 import _WriteReadFile.IOFile;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class UserManager {
-    private final ArrayList<User> userList = new ArrayList<>();
+    private final ArrayList<User> userList;
     private final IOFile<User> ioFile = new IOFile<>();
     private final String PATHNAME_OF_USER = "FileData/userinfor";
 
     public UserManager() {
+        if (new File(PATHNAME_OF_USER).length() == 0) {
+            this.userList = new ArrayList<>();
+        } else {
+            this.userList = ioFile.readFile(PATHNAME_OF_USER);
+        }
     }
 
     public ArrayList<User> getUserList() {
-        return ioFile.readFile(PATHNAME_OF_USER);
+        return userList;
     }
 
     public void displayUserList() {
