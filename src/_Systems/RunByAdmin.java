@@ -57,18 +57,21 @@ public class RunByAdmin {
 
     //Menu của Hệ thống Admin
     private int choiceOfAdmin() {
-        System.out.println("----------HỆ THỐNG ADMIN----------");
-        System.out.println("1. Quản lý phòng");
-        System.out.println("2. Quản lý hóa đơn");
-        System.out.println("3. Hiển thị thông tin ");
-        System.out.println("0. Đăng xuất");
+        System.out.println("╔===================================================╗ ");
+        System.out.println("║         ▂ ▃ ▅ ▆ █ HỆ THỐNG ADMIN █ ▆ ▅ ▃ ▂        ║ ");
+        System.out.println("╠===================================================╣");
+        System.out.println("║>[1]. Quản lý phòng                                ║");
+        System.out.println("║>[2]. Quản lý hóa đơn                              ║");
+        System.out.println("║>[3]. Hiển thị thông tin                           ║");
+        System.out.println("║>[0]. Đăng xuất                                    ║");
+        System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");
         return scan.nextInt();
     }
 
     private void exitOfAdmin() {
         System.out.println();
-        System.out.println("Đã thoát khỏi hệ thống Admin !!!");
+        System.out.println("Đã thoát khỏi hệ thống ADMIN !!!");
         System.out.println("--------------------");
         System.out.println();
         (new Login()).loginSystems();
@@ -79,14 +82,17 @@ public class RunByAdmin {
     private void menuRoomManager() {
         try {
             do {
-                System.out.println("----------QUẢN LÝ PHÒNG----------");
-                System.out.println("1. Thêm phòng");
-                System.out.println("2. Sửa phòng");
-                System.out.println("3. Xóa phòng");
-                System.out.println("4. Hiển thị danh sách phòng");
-                System.out.println("5. Tìm kiếm phòng còn trống theo giá");
-                System.out.println("6. Kiểm tra trạng thái phòng");
-                System.out.println("0. Thoát");
+                System.out.println("╔===================================================╗");
+                System.out.println("║         ▂ ▃ ▅ ▆ █ QUẢN LÝ PHÒNG █ ▆ ▅ ▃ ▂         ║");
+                System.out.println("╠===================================================╣");
+                System.out.println("║>[1]. Thêm phòng                                   ║");
+                System.out.println("║>[2]. Sửa phòng                                    ║");
+                System.out.println("║>[3]. Xóa phòng                                    ║");
+                System.out.println("║>[4]. Hiển thị danh sách phòng                     ║");
+                System.out.println("║>[5]. Tìm kiếm phòng còn trống theo giá            ║");
+                System.out.println("║>[6]. Kiểm tra trạng thái phòng                    ║");
+                System.out.println("║>[0]. Thoát                                        ║");
+                System.out.println("╚===================================================╝");
                 System.out.println("Mời bạn nhập lựa chọn:");
                 int choiceRoom = scan.nextInt();
                 scan.nextLine();
@@ -158,13 +164,16 @@ public class RunByAdmin {
     private void menuBillManager() {
         try {
             do {
-                System.out.println("----------QUẢN LÝ HÓA ĐƠN----------");
-                System.out.println("1. Thêm hóa đơn");
-                System.out.println("2. Sửa hóa đơn");
-                System.out.println("3. Xóa hóa đơn");
-                System.out.println("4. Hiển thị danh sách hóa đơn");
-                System.out.println("5. Tổng doanh thu của tháng");
-                System.out.println("0. Thoát");
+                System.out.println("╔===================================================╗");
+                System.out.println("║        ▂ ▃ ▅ ▆ █ QUẢN LÝ HÓA ĐƠN █ ▆ ▅ ▃ ▂        ║");
+                System.out.println("╠===================================================╣");
+                System.out.println("║>[1]. Thêm hóa đơn                                 ║");
+                System.out.println("║>[2]. Sửa hóa đơn                                  ║");
+                System.out.println("║>[3]. Xóa hóa đơn                                  ║");
+                System.out.println("║>[4]. Hiển thị danh sách hóa đơn                   ║");
+                System.out.println("║>[5]. Tổng doanh thu của tháng                     ║");
+                System.out.println("║>[0]. Thoát                                        ║");
+                System.out.println("╚===================================================╝");
                 System.out.println("Mời bạn nhập lựa chọn:");
                 int choiceBill = scan.nextInt();
                 scan.nextLine();

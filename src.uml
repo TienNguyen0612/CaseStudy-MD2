@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Dell/Desktop/CaseStudy2/src</OriginalElement>
+  <nodes>
+    <node x="763.7187499999999" y="407.0">_WriteReadFile.IOFile</node>
+    <node x="858.1666666666667" y="1217.0">_Validate.Validate</node>
+    <node x="1102.1666666666667" y="1206.0">_Systems.RunByUser</node>
+    <node x="1309.1666666666667" y="1206.0">_Systems.RunByAdmin</node>
+    <node x="20.03943452380952" y="55.0">_Account.AccountUser</node>
+    <node x="53.468749999999886" y="858.0">_Account.AccountUserManager</node>
+    <node x="270.3437499999999" y="351.0">_Account.User</node>
+    <node x="1159.300967261905" y="318.0">_Model.Bill</node>
+    <node x="410.7916666666667" y="1194.0">_Account.AccountAdmin</node>
+    <node x="1304.425967261905" y="770.0">_ModelManager.BillManager</node>
+    <node x="573.5509672619049" y="1446.0">_Login.Login</node>
+    <node x="1221.6666666666667" y="0.0">_Model.Room</node>
+    <node x="997.4259672619049" y="770.0">_ModelManager.RoomManager</node>
+    <node x="728.0509672619049" y="1794.0">MainCase.Main</node>
+    <node x="1695.550967261905" y="0.0">_DemoTest.DemoTest</node>
+    <node x="401.7604166666666" y="847.0">_Account.UserManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="_Account.AccountUserManager" target="_Account.AccountUser" relationship="CREATE">
+      <point x="-66.5" y="-62.0" />
+      <point x="119.96874999999989" y="748.0" />
+      <point x="231.9687499999999" y="748.0" />
+      <point x="231.9687499999999" y="708.0" />
+      <point x="0.0" y="708.0" />
+      <point x="0.0" y="287.0" />
+      <point x="44.53943452380952" y="287.0" />
+      <point x="-73.5" y="73.0" />
+    </edge>
+    <edge source="_Systems.RunByUser" target="_Login.Login" relationship="CREATE">
+      <point x="-46.75" y="83.0" />
+      <point x="1148.9166666666667" y="1415.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="0.0" y="-149.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Systems.RunByUser" relationship="CREATE">
+      <point x="0.0" y="-149.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="1148.9166666666667" y="1415.0" />
+      <point x="-46.75" y="83.0" />
+    </edge>
+    <edge source="_Systems.RunByUser" target="_ModelManager.RoomManager" relationship="CREATE">
+      <point x="-46.75" y="-83.0" />
+      <point x="1148.9166666666667" y="1172.0" />
+      <point x="1214.0811011904761" y="1172.0" />
+      <point x="1214.0811011904761" y="1132.0" />
+      <point x="1050.9561011904761" y="1132.0" />
+      <point x="1050.9561011904761" y="1112.0" />
+      <point x="1069.175967261905" y="1112.0" />
+      <point x="-71.75" y="150.0" />
+    </edge>
+    <edge source="_Account.AccountUserManager" target="_WriteReadFile.IOFile" relationship="CREATE">
+      <point x="-66.5" y="-62.0" />
+      <point x="119.96874999999989" y="748.0" />
+      <point x="231.9687499999999" y="748.0" />
+      <point x="231.9687499999999" y="718.0" />
+      <point x="646.0937499999999" y="718.0" />
+      <point x="646.0937499999999" y="638.0" />
+      <point x="821.4687499999999" y="638.0" />
+      <point x="-57.75" y="50.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.AccountUser" relationship="DEPENDENCY">
+      <point x="-152.33333333333337" y="-149.0" />
+      <point x="649.7176339285716" y="1425.0" />
+      <point x="11.0" y="1425.0" />
+      <point x="11.0" y="297.0" />
+      <point x="110.5" y="297.0" />
+      <point x="110.5" y="287.0" />
+      <point x="93.53943452380952" y="287.0" />
+      <point x="-24.5" y="73.0" />
+    </edge>
+    <edge source="_Account.User" target="_Account.AccountUser" relationship="GENERALIZATION">
+      <point x="0.0" y="-106.0" />
+      <point x="429.8437499999999" y="277.0" />
+      <point x="191.53943452380952" y="277.0" />
+      <point x="73.5" y="73.0" />
+    </edge>
+    <edge source="_ModelManager.BillManager" target="_Model.Bill" relationship="CREATE">
+      <point x="-108.0" y="-150.0" />
+      <point x="1358.425967261905" y="748.0" />
+      <point x="1378.1354166666665" y="748.0" />
+      <point x="1378.1354166666665" y="638.0" />
+      <point x="1238.800967261905" y="638.0" />
+      <point x="-79.5" y="139.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.AccountUserManager" relationship="CREATE">
+      <point x="0.0" y="-149.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="241.9687499999999" y="1415.0" />
+      <point x="241.9687499999999" y="1172.0" />
+      <point x="119.96874999999989" y="1172.0" />
+      <point x="-66.5" y="62.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_ModelManager.RoomManager" relationship="CREATE">
+      <point x="-64.0" y="-83.0" />
+      <point x="1341.1666666666667" y="1162.0" />
+      <point x="1050.9561011904761" y="1162.0" />
+      <point x="1050.9561011904761" y="1112.0" />
+      <point x="1069.175967261905" y="1112.0" />
+      <point x="-71.75" y="150.0" />
+    </edge>
+    <edge source="MainCase.Main" target="_Login.Login" relationship="CREATE">
+      <point x="0.0" y="-39.0" />
+      <point x="0.0" y="149.0" />
+    </edge>
+    <edge source="_ModelManager.BillManager" target="_Model.Room" relationship="DEPENDENCY">
+      <point x="108.0" y="-150.0" />
+      <point x="1574.425967261905" y="748.0" />
+      <point x="1552.675967261905" y="748.0" />
+      <point x="1552.675967261905" y="297.0" />
+      <point x="1519.3854166666665" y="297.0" />
+      <point x="1519.3854166666665" y="287.0" />
+      <point x="1440.0" y="287.0" />
+      <point x="87.33333333333326" y="128.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_Account.UserManager" relationship="TO_ONE">
+      <point x="0.0" y="-83.0" />
+      <point x="1405.1666666666667" y="1172.0" />
+      <point x="1367.5115327380954" y="1172.0" />
+      <point x="1367.5115327380954" y="1122.0" />
+      <point x="713.2916666666667" y="1122.0" />
+      <point x="713.2916666666667" y="1112.0" />
+      <point x="682.2604166666665" y="1112.0" />
+      <point x="93.5" y="73.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Validate.Validate" relationship="CREATE">
+      <point x="0.0" y="-149.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="914.1666666666667" y="1415.0" />
+      <point x="-56.0" y="72.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.AccountAdmin" relationship="CREATE">
+      <point x="0.0" y="-149.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="483.7916666666667" y="1415.0" />
+      <point x="-73.0" y="95.0" />
+    </edge>
+    <edge source="_Model.Bill" target="_Model.Room" relationship="TO_ONE">
+      <point x="-79.5" y="-139.0" />
+      <point x="1238.800967261905" y="297.0" />
+      <point x="1352.6666666666667" y="297.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="_Systems.RunByUser" target="_ModelManager.BillManager" relationship="CREATE">
+      <point x="-46.75" y="-83.0" />
+      <point x="1148.9166666666667" y="1172.0" />
+      <point x="1214.0811011904761" y="1172.0" />
+      <point x="1214.0811011904761" y="1092.0" />
+      <point x="1385.425967261905" y="1092.0" />
+      <point x="-81.0" y="150.0" />
+    </edge>
+    <edge source="_ModelManager.RoomManager" target="_WriteReadFile.IOFile" relationship="TO_ONE">
+      <point x="71.75" y="-150.0" />
+      <point x="1212.675967261905" y="748.0" />
+      <point x="1146.425967261905" y="748.0" />
+      <point x="1146.425967261905" y="658.0" />
+      <point x="936.9687499999999" y="658.0" />
+      <point x="57.75" y="50.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Validate.Validate" relationship="TO_ONE">
+      <point x="152.33333333333337" y="-149.0" />
+      <point x="954.3843005952383" y="1425.0" />
+      <point x="921.8009672619049" y="1425.0" />
+      <point x="921.8009672619049" y="1405.0" />
+      <point x="1026.1666666666667" y="1405.0" />
+      <point x="56.0" y="72.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.UserManager" relationship="CREATE">
+      <point x="0.0" y="-149.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="400.29166666666674" y="1415.0" />
+      <point x="400.29166666666674" y="1132.0" />
+      <point x="495.2604166666666" y="1132.0" />
+      <point x="-93.5" y="73.0" />
+    </edge>
+    <edge source="_ModelManager.RoomManager" target="_Model.Room" relationship="TO_MANY">
+      <point x="71.75" y="-150.0" />
+      <point x="1212.675967261905" y="748.0" />
+      <point x="1146.425967261905" y="748.0" />
+      <point x="1146.425967261905" y="297.0" />
+      <point x="1352.6666666666667" y="297.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Systems.RunByAdmin" relationship="CREATE">
+      <point x="0.0" y="-149.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="1357.1666666666667" y="1415.0" />
+      <point x="-48.0" y="83.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_Login.Login" relationship="CREATE">
+      <point x="-48.0" y="83.0" />
+      <point x="1357.1666666666667" y="1415.0" />
+      <point x="802.0509672619049" y="1415.0" />
+      <point x="0.0" y="-149.0" />
+    </edge>
+    <edge source="_Systems.RunByUser" target="_ModelManager.BillManager" relationship="TO_ONE">
+      <point x="46.75" y="-83.0" />
+      <point x="1242.4166666666667" y="1152.0" />
+      <point x="1539.8865327380954" y="1152.0" />
+      <point x="1539.8865327380954" y="1102.0" />
+      <point x="1547.425967261905" y="1102.0" />
+      <point x="81.0" y="150.0" />
+    </edge>
+    <edge source="_Account.UserManager" target="_Account.User" relationship="CREATE">
+      <point x="0.0" y="-73.0" />
+      <point x="588.7604166666665" y="748.0" />
+      <point x="646.0937499999999" y="748.0" />
+      <point x="646.0937499999999" y="688.0" />
+      <point x="350.0937499999999" y="688.0" />
+      <point x="-79.75" y="106.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_Model.Room" relationship="DEPENDENCY">
+      <point x="64.0" y="-83.0" />
+      <point x="1469.1666666666667" y="1142.0" />
+      <point x="1650.550967261905" y="1142.0" />
+      <point x="1650.550967261905" y="297.0" />
+      <point x="1519.3854166666665" y="297.0" />
+      <point x="1519.3854166666665" y="287.0" />
+      <point x="1440.0" y="287.0" />
+      <point x="87.33333333333326" y="128.0" />
+    </edge>
+    <edge source="_Account.UserManager" target="_Account.User" relationship="TO_MANY">
+      <point x="124.66666666666663" y="-73.0" />
+      <point x="713.4270833333333" y="748.0" />
+      <point x="777.7894345238095" y="748.0" />
+      <point x="777.7894345238095" y="678.0" />
+      <point x="509.5937499999999" y="678.0" />
+      <point x="79.75" y="106.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Systems.RunByUser" relationship="TO_ONE">
+      <point x="152.33333333333337" y="-149.0" />
+      <point x="954.3843005952383" y="1425.0" />
+      <point x="921.8009672619049" y="1425.0" />
+      <point x="921.8009672619049" y="1405.0" />
+      <point x="1242.4166666666667" y="1405.0" />
+      <point x="46.75" y="83.0" />
+    </edge>
+    <edge source="_Account.AccountUserManager" target="_WriteReadFile.IOFile" relationship="TO_ONE">
+      <point x="66.5" y="-62.0" />
+      <point x="252.9687499999999" y="748.0" />
+      <point x="328.80319940476204" y="748.0" />
+      <point x="328.80319940476204" y="728.0" />
+      <point x="936.9687499999999" y="728.0" />
+      <point x="57.75" y="50.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_Account.UserManager" relationship="CREATE">
+      <point x="-64.0" y="-83.0" />
+      <point x="1341.1666666666667" y="1162.0" />
+      <point x="1050.9561011904761" y="1162.0" />
+      <point x="1050.9561011904761" y="1142.0" />
+      <point x="400.29166666666674" y="1142.0" />
+      <point x="400.29166666666674" y="1132.0" />
+      <point x="495.2604166666666" y="1132.0" />
+      <point x="-93.5" y="73.0" />
+    </edge>
+    <edge source="_Systems.RunByUser" target="_ModelManager.RoomManager" relationship="TO_ONE">
+      <point x="46.75" y="-83.0" />
+      <point x="1242.4166666666667" y="1152.0" />
+      <point x="1539.8865327380954" y="1152.0" />
+      <point x="1539.8865327380954" y="1112.0" />
+      <point x="1367.5115327380954" y="1112.0" />
+      <point x="1367.5115327380954" y="1102.0" />
+      <point x="1212.675967261905" y="1102.0" />
+      <point x="71.75" y="150.0" />
+    </edge>
+    <edge source="_Account.UserManager" target="_Account.AccountUser" relationship="DEPENDENCY">
+      <point x="-124.66666666666669" y="-73.0" />
+      <point x="464.0937499999999" y="698.0" />
+      <point x="241.9687499999999" y="698.0" />
+      <point x="241.9687499999999" y="297.0" />
+      <point x="110.5" y="297.0" />
+      <point x="110.5" y="287.0" />
+      <point x="93.53943452380952" y="287.0" />
+      <point x="-24.5" y="73.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.AccountUserManager" relationship="TO_ONE">
+      <point x="152.33333333333337" y="-149.0" />
+      <point x="954.3843005952383" y="1425.0" />
+      <point x="921.8009672619049" y="1425.0" />
+      <point x="921.8009672619049" y="1405.0" />
+      <point x="252.9687499999999" y="1405.0" />
+      <point x="66.5" y="62.0" />
+    </edge>
+    <edge source="_Model.Bill" target="_Model.Room" relationship="DEPENDENCY">
+      <point x="79.5" y="-139.0" />
+      <point x="1397.800967261905" y="297.0" />
+      <point x="1519.3854166666665" y="297.0" />
+      <point x="1519.3854166666665" y="287.0" />
+      <point x="1440.0" y="287.0" />
+      <point x="87.33333333333326" y="128.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_ModelManager.RoomManager" relationship="TO_ONE">
+      <point x="0.0" y="-83.0" />
+      <point x="1405.1666666666667" y="1172.0" />
+      <point x="1367.5115327380954" y="1172.0" />
+      <point x="1367.5115327380954" y="1102.0" />
+      <point x="1212.675967261905" y="1102.0" />
+      <point x="71.75" y="150.0" />
+    </edge>
+    <edge source="_ModelManager.BillManager" target="_WriteReadFile.IOFile" relationship="CREATE">
+      <point x="-108.0" y="-150.0" />
+      <point x="1358.425967261905" y="748.0" />
+      <point x="1378.1354166666665" y="748.0" />
+      <point x="1378.1354166666665" y="648.0" />
+      <point x="646.0937499999999" y="648.0" />
+      <point x="646.0937499999999" y="638.0" />
+      <point x="821.4687499999999" y="638.0" />
+      <point x="-57.75" y="50.0" />
+    </edge>
+    <edge source="_ModelManager.BillManager" target="_Model.Bill" relationship="TO_MANY">
+      <point x="0.0" y="-150.0" />
+      <point x="1466.425967261905" y="618.0" />
+      <point x="1397.800967261905" y="618.0" />
+      <point x="79.5" y="139.0" />
+    </edge>
+    <edge source="_Account.UserManager" target="_WriteReadFile.IOFile" relationship="CREATE">
+      <point x="0.0" y="-73.0" />
+      <point x="588.7604166666665" y="748.0" />
+      <point x="646.0937499999999" y="748.0" />
+      <point x="646.0937499999999" y="638.0" />
+      <point x="821.4687499999999" y="638.0" />
+      <point x="-57.75" y="50.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Systems.RunByAdmin" relationship="TO_ONE">
+      <point x="152.33333333333337" y="-149.0" />
+      <point x="954.3843005952383" y="1425.0" />
+      <point x="921.8009672619049" y="1425.0" />
+      <point x="921.8009672619049" y="1405.0" />
+      <point x="1453.1666666666667" y="1405.0" />
+      <point x="48.0" y="83.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_ModelManager.BillManager" relationship="TO_ONE">
+      <point x="0.0" y="-83.0" />
+      <point x="1405.1666666666667" y="1172.0" />
+      <point x="1367.5115327380954" y="1172.0" />
+      <point x="1367.5115327380954" y="1132.0" />
+      <point x="1539.8865327380954" y="1132.0" />
+      <point x="1539.8865327380954" y="1102.0" />
+      <point x="1547.425967261905" y="1102.0" />
+      <point x="81.0" y="150.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.UserManager" relationship="TO_ONE">
+      <point x="152.33333333333337" y="-149.0" />
+      <point x="954.3843005952383" y="1425.0" />
+      <point x="921.8009672619049" y="1425.0" />
+      <point x="921.8009672619049" y="1405.0" />
+      <point x="713.2916666666667" y="1405.0" />
+      <point x="713.2916666666667" y="1112.0" />
+      <point x="682.2604166666665" y="1112.0" />
+      <point x="93.5" y="73.0" />
+    </edge>
+    <edge source="_ModelManager.RoomManager" target="_WriteReadFile.IOFile" relationship="CREATE">
+      <point x="-71.75" y="-150.0" />
+      <point x="1069.175967261905" y="748.0" />
+      <point x="1135.425967261905" y="748.0" />
+      <point x="1135.425967261905" y="668.0" />
+      <point x="646.0937499999999" y="668.0" />
+      <point x="646.0937499999999" y="638.0" />
+      <point x="821.4687499999999" y="638.0" />
+      <point x="-57.75" y="50.0" />
+    </edge>
+    <edge source="_Systems.RunByAdmin" target="_ModelManager.BillManager" relationship="CREATE">
+      <point x="-64.0" y="-83.0" />
+      <point x="1341.1666666666667" y="1162.0" />
+      <point x="1050.9561011904761" y="1162.0" />
+      <point x="1050.9561011904761" y="1152.0" />
+      <point x="1214.0811011904761" y="1152.0" />
+      <point x="1214.0811011904761" y="1092.0" />
+      <point x="1385.425967261905" y="1092.0" />
+      <point x="-81.0" y="150.0" />
+    </edge>
+    <edge source="_Account.UserManager" target="_WriteReadFile.IOFile" relationship="TO_ONE">
+      <point x="124.66666666666663" y="-73.0" />
+      <point x="713.4270833333333" y="748.0" />
+      <point x="777.7894345238095" y="748.0" />
+      <point x="777.7894345238095" y="738.0" />
+      <point x="936.9687499999999" y="738.0" />
+      <point x="57.75" y="50.0" />
+    </edge>
+    <edge source="_Login.Login" target="_Account.AccountAdmin" relationship="TO_ONE">
+      <point x="152.33333333333337" y="-149.0" />
+      <point x="954.3843005952383" y="1425.0" />
+      <point x="921.8009672619049" y="1425.0" />
+      <point x="921.8009672619049" y="1405.0" />
+      <point x="629.7916666666667" y="1405.0" />
+      <point x="73.0" y="95.0" />
+    </edge>
+    <edge source="_ModelManager.BillManager" target="_WriteReadFile.IOFile" relationship="TO_ONE">
+      <point x="0.0" y="-150.0" />
+      <point x="1466.425967261905" y="628.0" />
+      <point x="936.9687499999999" y="628.0" />
+      <point x="57.75" y="50.0" />
+    </edge>
+    <edge source="_Account.AccountUserManager" target="_Account.AccountUser" relationship="TO_MANY">
+      <point x="66.5" y="-62.0" />
+      <point x="252.9687499999999" y="748.0" />
+      <point x="328.80319940476204" y="748.0" />
+      <point x="328.80319940476204" y="708.0" />
+      <point x="252.9687499999999" y="708.0" />
+      <point x="252.9687499999999" y="287.0" />
+      <point x="142.53943452380952" y="287.0" />
+      <point x="24.5" y="73.0" />
+    </edge>
+    <edge source="_ModelManager.RoomManager" target="_Model.Room" relationship="CREATE">
+      <point x="-71.75" y="-150.0" />
+      <point x="1069.175967261905" y="748.0" />
+      <point x="1135.425967261905" y="748.0" />
+      <point x="1135.425967261905" y="287.0" />
+      <point x="1265.3333333333335" y="287.0" />
+      <point x="-87.33333333333326" y="128.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.30285412262156447" showDependencies="true" x="908.0" y="936.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

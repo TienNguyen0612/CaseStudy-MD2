@@ -38,13 +38,16 @@ public class Login {
 
     //Menu
     private void menuLogin() {
-        System.out.println("CHÀO MỪNG BẠN ĐẾN VỚI NHÀ NGHỈ SEN HỒNG");
         System.out.println();
-        System.out.println("-----------------------");
-        System.out.println("| 1. Đăng nhập        |");
-        System.out.println("| 2. Đăng ký          |");
-        System.out.println("| 0. Thoát            |");
-        System.out.println("-----------------------");
+        System.out.println("       CHÀO MỪNG BẠN ĐẾN VỚI NHÀ NGHỈ SEN HỒNG       ");
+        System.out.println();
+        System.out.println("╔===================================================╗");
+        System.out.println("║       ▂ ▃ ▅ ▆ █ QUẢN LÝ KHÁCH SẠN █ ▆ ▅ ▃ ▂       ║");
+        System.out.println("╠===================================================╣");
+        System.out.println("║>[1]. Đăng nhập                                    ║");
+        System.out.println("║>[2]. Đăng ký                                      ║");
+        System.out.println("║>[0]. Thoát                                        ║");
+        System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");
         int choice = scanner.nextInt();
         scanner.nextLine();

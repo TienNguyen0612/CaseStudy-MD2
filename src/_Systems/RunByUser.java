@@ -54,11 +54,14 @@ public class RunByUser {
 
     //Menu Hệ thống User
     private int choiceOfUser() throws InputMismatchException {
-        System.out.println("----------HỆ THỐNG USER----------");
-        System.out.println("1. Hiển thị danh sách phòng");
-        System.out.println("2. Tìm kiếm phòng còn trống theo giá");
-        System.out.println("3. Kiểm tra trạng thái phòng");
-        System.out.println("0. Đăng xuất");
+        System.out.println("╔===================================================╗");
+        System.out.println("║         ▂ ▃ ▅ ▆ █ HỆ THỐNG USER █ ▆ ▅ ▃ ▂         ║");
+        System.out.println("╠===================================================╣");
+        System.out.println("║>[1]. Hiển thị danh sách phòng                     ║");
+        System.out.println("║>[2]. Tìm kiếm phòng còn trống theo giá            ║");
+        System.out.println("║>[3]. Kiểm tra trạng thái phòng                    ║");
+        System.out.println("║>[0]. Đăng xuất                                    ║");
+        System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");
         return scanner.nextInt();
     }
