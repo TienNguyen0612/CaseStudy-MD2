@@ -2,33 +2,39 @@ package _Account;
 
 import _WriteReadFile.IOFile;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class AccountUserManager {
-    private final ArrayList<AccountUser> accountUserList = new ArrayList<>();
+    private final ArrayList<AccountUser> accountUserList;
     private final IOFile<AccountUser> ioFile = new IOFile<>();
     private final String PATHNAME_OF_ACCOUNT_USER = "FileData/accountuser";
 
     public AccountUserManager() {
+        if (new File(PATHNAME_OF_ACCOUNT_USER).length() == 0) {
+            this.accountUserList = new ArrayList<>();
+        } else {
+            this.accountUserList = ioFile.readFile(PATHNAME_OF_ACCOUNT_USER);
+        }
     }
 
     public ArrayList<AccountUser> getAccountUserList() {
-        return ioFile.readFile(PATHNAME_OF_ACCOUNT_USER);
+        return accountUserList;
     }
 
     public void setListUser(String account, String password) {
-        ArrayList<AccountUser> accountUsers;
-        if (checkFile()) {
-            accountUsers = accountUserList;
-        } else {
-            accountUsers = getAccountUserList();
-        }
-        accountUsers.add(new AccountUser(account, password));
-        ioFile.writeFile(accountUsers, PATHNAME_OF_ACCOUNT_USER);
+//        ArrayList<AccountUser> accountUsers;
+//        if (checkFile()) {
+//            accountUsers = accountUserList;
+//        } else {
+//            accountUsers = getAccountUserList();
+//        }
+        accountUserList.add(new AccountUser(account, password));
+        ioFile.writeFile(accountUserList, PATHNAME_OF_ACCOUNT_USER);
     }
 
-    public boolean checkFile() {
-        ArrayList<AccountUser> accountUserList = getAccountUserList();
-        return accountUserList == null;
-    }
+//    public boolean checkFile() {
+//        ArrayList<AccountUser> accountUserList = getAccountUserList();
+//        return accountUserList == null;
+//    }
 }

@@ -56,18 +56,18 @@ public class UserManager {
     }
 
     public void setListUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
-        ArrayList<User> users;
-        if (checkFile()) {
-            users = userList;
-        } else {
-            users = getUserList();
-        }
-        users.add(new User(accountUser, passwordUser, name, age, address, phoneNumber, email));
-        ioFile.writeFile(users, PATHNAME_OF_USER);
+//        ArrayList<User> users;
+//        if (checkFile()) {
+//            users = userList;
+//        } else {
+//            users = getUserList();
+//        }
+        userList.add(new User(accountUser, passwordUser, name, age, address, phoneNumber, email));
+        ioFile.writeFile(userList, PATHNAME_OF_USER);
     }
 
-    public boolean checkFile() {
-        ArrayList<User> userList = getUserList();
-        return userList == null;
-    }
+//    public boolean checkFile() {
+//        ArrayList<User> userList = getUserList();
+//        return userList == null;
+//    }
 }

@@ -93,13 +93,13 @@ public class Login {
     }
 
     private void checkAccountUser(String account, String password) {
-        if (accountUserManager.checkFile()) {
-            System.out.println();
-            System.out.println("Tài khoản USER chưa tồn tại. Vui lòng kiểm tra lại !!!");
-            System.out.println("--------------------");
-            System.out.println();
-            loginSystems();
-        } else if (checkLoginAccountUser(account, password)) {
+//        if (accountUserManager.checkFile()) {
+//            System.out.println();
+//            System.out.println("Tài khoản USER chưa tồn tại. Vui lòng kiểm tra lại !!!");
+//            System.out.println("--------------------");
+//            System.out.println();
+//            loginSystems();
+        if (checkLoginAccountUser(account, password)) {
             System.out.println();
             System.out.println("Đăng nhập hệ thống bởi USER thành công !!!");
             System.out.println("--------------------");
@@ -107,7 +107,7 @@ public class Login {
             runByUser.menuOfUser();
         } else {
             System.out.println();
-            System.out.println("Đăng nhập thất bại. Vui lòng kiểm tra lại !!!");
+            System.out.println("Tài khoản USER chưa tồn tại. Vui lòng kiểm tra lại !!!");
             System.out.println("--------------------");
             System.out.println();
             loginSystems();
@@ -239,13 +239,13 @@ public class Login {
     }
 
     private void checkAccountUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
-        if (accountUserManager.checkFile()) {
-            writeAccountUserAndUser(accountUser, passwordUser, name, age, address, phoneNumber, email);
-            System.out.println();
-            System.out.println("Đăng ký thành công. Mời đăng nhập vào hệ thống !!!");
-            System.out.println("--------------------");
-            System.out.println();
-        } else if (checkAccount(accountUser)) {
+//        if (accountUserManager.checkFile()) {
+//            writeAccountUserAndUser(accountUser, passwordUser, name, age, address, phoneNumber, email);
+//            System.out.println();
+//            System.out.println("Đăng ký thành công. Mời đăng nhập vào hệ thống !!!");
+//            System.out.println("--------------------");
+//            System.out.println();
+        if (checkAccount(accountUser)) {
             System.out.println();
             System.out.println("Tài khoản đã tồn tại. Vui lòng đăng ký lại !!!");
             System.out.println("--------------------");
