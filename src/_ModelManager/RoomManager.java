@@ -139,6 +139,7 @@ public class RoomManager {
             System.out.println("--------------------");
             return;
         }
+        System.out.println("----------------------------------------------------");
         System.out.printf("| %-15s| %-15s| %-15s|\n", "Tên", "Giá", "Trạng thái ");
         System.out.println("----------------------------------------------------");
         for (Room room : roomList) {
@@ -159,6 +160,7 @@ public class RoomManager {
             }
         }
         if (checkRoom) {
+            System.out.println("----------------------------------------------------");
             System.out.printf("| %-15s| %-15s| %-15s|\n", "Tên", "Giá", "Trạng thái");
             System.out.println("----------------------------------------------------");
             for (Room room : rooms) {

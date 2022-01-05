@@ -83,7 +83,7 @@ public class BillManager {
         System.out.println("Nhập tên khách thuê:");
         String customerName1 = scanner.nextLine();
         String staffName1 = "Online";
-        System.out.println("Nhập ngày bắt đầu(dd-mm-yyyy):");
+        System.out.println("Nhập ngày bắt đầu(dd-mm-yyyy): ");
         String start1 = scanner.nextLine();
         LocalDate startDate1 = LocalDate.parse(start1, DateTimeFormatter.ofPattern("dd-LL-yyyy"));
         System.out.println("Nhập ngày kết thúc(dd-mm-yyyy):");
@@ -158,6 +158,7 @@ public class BillManager {
             System.out.println("--------------------");
             return;
         }
+        System.out.println("--------------------------------------------------------------------------------");
         System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15s|\n", "Id", "Room", "Customer", "Staff", "Check-in", "Check-out", "Total");
         System.out.println("--------------------------------------------------------------------------------");
         for (Bill bill : billList) {
@@ -205,6 +206,7 @@ public class BillManager {
                 System.out.println("--------------------");
             } else {
                 billArrayList.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
+                System.out.println("----------------------------------------------------");
                 System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
                 System.out.println("----------------------------------------------------");
                 for (Bill bill : billArrayList) {
