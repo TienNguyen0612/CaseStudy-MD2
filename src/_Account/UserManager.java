@@ -27,6 +27,7 @@ public class UserManager {
             System.out.println("Chưa có người dùng nào đăng ký !!!");
             System.out.println("--------------------");
         } else {
+            System.out.println("---------------------------------------------------------------------");
             System.out.printf("| %-15s| %-15s| %-15s| %-18s|\n", "Tên", "Tài khoản", "Tuổi", "Số điện thoại");
             System.out.println("---------------------------------------------------------------------");
             for (User user : userList) {
