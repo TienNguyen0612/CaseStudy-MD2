@@ -27,12 +27,12 @@ public class UserManager {
             System.out.println("Chưa có người dùng nào đăng ký !!!");
             System.out.println("--------------------");
         } else {
-            System.out.println("---------------------------------------------------------------------");
-            System.out.printf("| %-15s| %-15s| %-15s| %-18s|\n", "Tên", "Tài khoản", "Tuổi", "Số điện thoại");
-            System.out.println("---------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------");
+            System.out.printf("| %-15s| %-15s| %-15s| %-15s |\n", "Tên", "Tài khoản", "Tuổi", "Số điện thoại");
+            System.out.println("----------------------------------------------------------------------");
             for (User user : userList) {
-                System.out.printf("| %-15s| %-15s| %-15d| %-18s|\n", user.getName(), user.getAccount(), user.getAge(), user.getPhoneNumber());
-                System.out.println("---------------------------------------------------------------------");
+                System.out.printf("| %-15s| %-15s| %-15d| %-15s |\n", user.getName(), user.getAccount(), user.getAge(), user.getPhoneNumber());
+                System.out.println("----------------------------------------------------------------------");
             }
         }
     }
