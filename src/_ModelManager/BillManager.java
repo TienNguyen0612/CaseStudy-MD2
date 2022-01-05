@@ -180,23 +180,31 @@ public class BillManager {
 
     public void checkRoomStatus(String name, LocalDate beforeDate, LocalDate afterDate) {
         ArrayList<Bill> billArrayList = new ArrayList<>();
-        boolean check = false;
+        int check = 0;
         if (beforeDate.isAfter(afterDate)) {
             System.out.println("Nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             return;
         }
         for (Bill bill : billList) {
-            if (bill.getRoom().getRoomName().equals(name) && bill.getRoom().getRoomStatus().equals("Đang trống")) {
+            if (bill.getRoom().getRoomName().equals(name)) {
                 billArrayList.add(bill);
-                check = true;
+                check += 1;
             }
         }
-        if (check) {
-            billArrayList.removeIf(bill -> bill.getEndDate().isBefore(beforeDate) || bill.getStartDate().isAfter(afterDate));
-            billArrayList.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
+        if (check == 0) {
+            System.out.println("- Phòng đã thuê hoặc đang sửa !!!");
+            System.out.println("- Không tìm thấy phòng !!!");
+            System.out.println("--------------------");
+        } else {
+            billArrayList.removeIf(bill -> bill.getEndDate().isBefore(beforeDate) || bill.getStartDate().isAfter(afterDate)
+                    || bill.getEndDate().isEqual(beforeDate) || bill.getStartDate().isEqual(afterDate));
             System.out.println("Trạng thái phòng " + name + " từ " + beforeDate + " đến " + afterDate + ":");
-            if (!billArrayList.isEmpty()) {
+            if (billArrayList.isEmpty()) {
+                System.out.println("Đang trống !!!");
+                System.out.println("--------------------");
+            } else {
+                billArrayList.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
                 System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
                 System.out.println("----------------------------------------------------");
                 for (Bill bill : billArrayList) {
@@ -204,14 +212,7 @@ public class BillManager {
                     System.out.println();
                     System.out.println("----------------------------------------------------");
                 }
-            } else {
-                System.out.println("Đang trống !!!");
-                System.out.println("--------------------");
             }
-        } else {
-            System.out.println("- Phòng đã thuê hoặc đang sửa !!!");
-            System.out.println("- Không tìm thấy phòng !!!");
-            System.out.println("--------------------");
         }
 
     }
