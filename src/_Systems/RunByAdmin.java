@@ -226,7 +226,7 @@ public class RunByAdmin {
                         break;
                 }
             } while (true);
-        } catch (InputMismatchException |NullPointerException e) {
+        } catch (InputMismatchException | NullPointerException | DateTimeParseException e) {
             System.out.println();
             System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");

@@ -142,15 +142,32 @@ public class Login {
         String passwordUser = enterPassword();
         System.out.println("Nhập tên:");
         String name = scanner.nextLine();
-        System.out.println("Nhập tuổi:");
-        int age = scanner.nextInt();
-        scanner.nextLine();
+        int age = enterAge();
         System.out.println("Nhập địa chỉ:");
         String address = scanner.nextLine();
         String phoneNumber = enterPhoneNumber();
         String email = enterEmail();
 
         checkAccountUser(accountUser, passwordUser, name, age, address, phoneNumber, email);
+    }
+
+    private int enterAge() {
+        int age;
+        while (true) {
+            System.out.println("Nhập tuổi:");
+            int inputAge = scanner.nextInt();
+            boolean checkAge = (inputAge >= 18 && inputAge < 70);
+            scanner.nextLine();
+            if (!checkAge) {
+                System.out.println("Tuổi không hợp lệ !!!");
+                System.out.println(">[Chú ý]: Tuổi trong khoảng từ 18 - 70");
+                System.out.println("--------------------");
+            } else {
+                age = inputAge;
+                break;
+            }
+        }
+        return age;
     }
 
     private String enterAccount() {

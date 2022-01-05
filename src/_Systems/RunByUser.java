@@ -1,6 +1,7 @@
 package _Systems;
 
 import _Login.Login;
+import _Model.Room;
 import _ModelManager.BillManager;
 import _ModelManager.RoomManager;
 
@@ -23,7 +24,7 @@ public class RunByUser {
             do {
                 int choice = choiceOfUser();
                 scanner.nextLine();
-                if (choice < 0 || choice > 3) {
+                if (choice < 0 || choice > 4) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
@@ -38,14 +39,25 @@ public class RunByUser {
                     case 3:
                         checkRoomStatus();
                         break;
+                    case 4:
+                        System.out.println("Nhập vào phòng muốn thuê:");
+                        String name = scanner.nextLine();
+                        Room room = roomManager.getRoom(name);
+                        if (room != null) {
+                            billManager.addBillByUser(room);
+                        } else {
+                            System.out.println("Phòng trên không tồn tại !!!");
+                            System.out.println("--------------------");
+                        }
+                        break;
                     case 0:
                         exitOfUser();
                         break;
                 }
             } while (true);
-        } catch (InputMismatchException | DateTimeParseException e) {
+        } catch (InputMismatchException | DateTimeParseException | NullPointerException e) {
             System.out.println();
-            System.err.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
+            System.out.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
             menuOfUser();
@@ -60,6 +72,7 @@ public class RunByUser {
         System.out.println("║>[1]. Hiển thị danh sách phòng                     ║");
         System.out.println("║>[2]. Tìm kiếm phòng còn trống theo giá            ║");
         System.out.println("║>[3]. Kiểm tra trạng thái phòng                    ║");
+        System.out.println("║>[4]. Đặt phòng                                    ║");
         System.out.println("║>[0]. Đăng xuất                                    ║");
         System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");
