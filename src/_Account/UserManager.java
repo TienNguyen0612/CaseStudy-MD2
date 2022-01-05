@@ -27,12 +27,30 @@ public class UserManager {
             System.out.println("Chưa có người dùng nào đăng ký !!!");
             System.out.println("--------------------");
         } else {
-            System.out.printf("| %-15s| %-15s| %-15s| %-15s|\n", "Tên", "Tài khoản", "Tuổi", "Số điện thoại");
+            System.out.printf("| %-15s| %-15s| %-15s| %-18s|\n", "Tên", "Tài khoản", "Tuổi", "Số điện thoại");
             System.out.println("---------------------------------------------------------------------");
             for (User user : userList) {
-                System.out.printf("| %-15s| %-15s| %-15d| %-15s|\n", user.getName(), user.getAccount(), user.getAge(), user.getPhoneNumber());
+                System.out.printf("| %-15s| %-15s| %-15d| %-18s|\n", user.getName(), user.getAccount(), user.getAge(), user.getPhoneNumber());
                 System.out.println("---------------------------------------------------------------------");
             }
+        }
+    }
+
+    public void deleteByName(String account) {
+        User user = null;
+        for (User user1 : userList) {
+            if (user1.getAccount().equals(account)) {
+                user = user1;
+            }
+        }
+        if (user != null) {
+            userList.remove(user);
+            ioFile.writeFile(userList, PATHNAME_OF_USER);
+            System.out.println("Xóa tài khoản " + account + " thành công !!!");
+            System.out.println("--------------------");
+        } else {
+            System.out.println("Không tìm thấy tài khoản cần xóa");
+            System.out.println("--------------------");
         }
     }
 
@@ -43,7 +61,7 @@ public class UserManager {
         } else {
             users = getUserList();
         }
-        users.add(new User(accountUser,passwordUser, name, age, address, phoneNumber, email));
+        users.add(new User(accountUser, passwordUser, name, age, address, phoneNumber, email));
         ioFile.writeFile(users, PATHNAME_OF_USER);
     }
 

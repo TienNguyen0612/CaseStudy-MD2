@@ -25,7 +25,8 @@ public class RunByAdmin {
         try {
             do {
                 int choice = choiceOfAdmin();
-                if (choice < 0 || choice > 3) {
+                scan.nextLine();
+                if (choice < 0 || choice > 4) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
@@ -39,6 +40,11 @@ public class RunByAdmin {
                         break;
                     case 3:
                         userManager.displayUserList();
+                        break;
+                    case 4:
+                        System.out.println("Nhập tài khoản muốn xóa:");
+                        String accountDelete = scan.nextLine();
+                        userManager.deleteByName(accountDelete);
                         break;
                     case 0:
                         exitOfAdmin();
@@ -62,7 +68,8 @@ public class RunByAdmin {
         System.out.println("╠===================================================╣");
         System.out.println("║>[1]. Quản lý phòng                                ║");
         System.out.println("║>[2]. Quản lý hóa đơn                              ║");
-        System.out.println("║>[3]. Hiển thị thông tin                           ║");
+        System.out.println("║>[3]. Hiển thị thông tin USER                      ║");
+        System.out.println("║>[4]. Xóa USER                                     ║");
         System.out.println("║>[0]. Đăng xuất                                    ║");
         System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");

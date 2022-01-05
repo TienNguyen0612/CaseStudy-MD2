@@ -28,10 +28,9 @@ public class Login {
             menuLogin();
         } catch (InputMismatchException e) {
             System.out.println();
-            System.err.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
+            System.out.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
-            scanner.nextLine();
             loginSystems();
         }
     }
@@ -139,10 +138,8 @@ public class Login {
     public void registerAccountUser() throws InputMismatchException {
         System.out.println("Mời bạn nhập thông tin:");
         System.out.println("--------------------");
-        System.out.println("Nhập tài khoản:");
-        String accountUser = scanner.nextLine();
-        System.out.println("Nhập passwword:");
-        String passwordUser = scanner.nextLine();
+        String accountUser = enterAccount();
+        String passwordUser = enterPassword();
         System.out.println("Nhập tên:");
         String name = scanner.nextLine();
         System.out.println("Nhập tuổi:");
@@ -150,12 +147,78 @@ public class Login {
         scanner.nextLine();
         System.out.println("Nhập địa chỉ:");
         String address = scanner.nextLine();
-        System.out.println("Nhập số điện thoại:");
-        String phoneNumber = scanner.nextLine();
-        System.out.println("Nhập email:");
-        String email = scanner.nextLine();
+        String phoneNumber = enterPhoneNumber();
+        String email = enterEmail();
 
         checkAccountUser(accountUser, passwordUser, name, age, address, phoneNumber, email);
+    }
+
+    private String enterAccount() {
+        String accountUser;
+        while (true) {
+            System.out.println("Nhập tài khoản:");
+            String account = scanner.nextLine();
+            if (!validate.validateAccount(account)) {
+                System.out.println("Tài khoản không hợp lệ !!!");
+                System.out.println(">[Chú ý]: Tài khoản phải từ 8 - 12 ký tự (a,1,...)");
+                System.out.println("--------------------");
+            } else {
+                accountUser = account;
+                break;
+            }
+        }
+        return accountUser;
+    }
+
+    private String enterPassword() {
+        String passwordUser;
+        while (true) {
+            System.out.println("Nhập passwword:");
+            String password = scanner.nextLine();
+            if (!validate.validatePassword(password)) {
+                System.out.println("Mật khẩu không hợp lệ !!!");
+                System.out.println(">[Chú ý]: Mật khẩu phải từ 8 - 16 ký tự (a,A,1,...) bao gồm 1 ký tự đặc biệt (@,#,$)");
+                System.out.println("--------------------");
+            } else {
+                passwordUser = password;
+                break;
+            }
+        }
+        return passwordUser;
+    }
+
+    private String enterPhoneNumber() {
+        String phoneNumber;
+        while (true) {
+            System.out.println("Nhập số điện thoại:");
+            String phone = scanner.nextLine();
+            if (!validate.validatePhone(phone)) {
+                System.out.println("Số điện thoại không hợp lệ !!!");
+                System.out.println(">[Chú ý]: Số điện thoại phải có 10 số (0 - 9) định dạng: (+84)-911112222");
+                System.out.println("--------------------");
+            } else {
+                phoneNumber = phone;
+                break;
+            }
+        }
+        return phoneNumber;
+    }
+
+    private String enterEmail() {
+        String email;
+        while (true) {
+            System.out.println("Nhập email:");
+            String inputEmail = scanner.nextLine();
+            if (!validate.validateEmail(inputEmail)) {
+                System.out.println("Email không hợp lệ !!!");
+                System.out.println(">[Chú ý]: Email phải có dạng: abc.company@yahoo.com/abc12.company@gmail.vn/...");
+                System.out.println("--------------------");
+            } else {
+                email = inputEmail;
+                break;
+            }
+        }
+        return email;
     }
 
     private void checkAccountUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
