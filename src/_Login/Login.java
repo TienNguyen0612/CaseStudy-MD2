@@ -50,6 +50,11 @@ public class Login {
             System.out.println("╚===================================================╝");
             System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
             int choice = Integer.parseInt(scanner.nextLine());
+            if (choice < 0 || choice > 2) {
+                System.out.println();
+                System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
+                System.out.println("--------------------");
+            }
             switch (choice) {
                 case 1:
                     loginManager();

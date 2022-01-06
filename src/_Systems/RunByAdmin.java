@@ -9,6 +9,7 @@ import _ModelManager.RoomManager;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RunByAdmin {
@@ -128,9 +129,9 @@ public class RunByAdmin {
                         break;
                     case 5:
                         System.out.println("Nhập giá dưới:");
-                        double lowerPrice = scan.nextDouble();
+                        double lowerPrice = Double.parseDouble(scan.nextLine());
                         System.out.println("Nhập giá trên:");
-                        double abovePrice = scan.nextDouble();
+                        double abovePrice = Double.parseDouble(scan.nextLine());
                         if (lowerPrice > abovePrice) {
                             System.out.println("⛔ Nhập sai dữ liệu, mời nhập lại !!!");
                             System.out.println("--------------------");
@@ -157,7 +158,7 @@ public class RunByAdmin {
                         break;
                 }
             } while (true);
-        } catch (NumberFormatException | DateTimeParseException e) {
+        } catch (NumberFormatException | DateTimeParseException | InputMismatchException e) {
             System.out.println();
             System.out.println("⛔ Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
@@ -182,6 +183,13 @@ public class RunByAdmin {
                 System.out.println("╚===================================================╝");
                 System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
                 int choiceBill = Integer.parseInt(scan.nextLine());
+                if (choiceBill < 0 || choiceBill > 5) {
+                    System.out.println();
+                    System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
+                    System.out.println("--------------------");
+                    System.out.println();
+                    menuBillManager();
+                }
                 switch (choiceBill) {
                     case 1:
                         System.out.println("Nhập vào phòng muốn thuê:");

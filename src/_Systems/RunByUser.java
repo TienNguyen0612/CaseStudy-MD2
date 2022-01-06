@@ -54,7 +54,7 @@ public class RunByUser {
                         break;
                 }
             } while (true);
-        } catch (NumberFormatException | DateTimeParseException e) {
+        } catch (NumberFormatException | DateTimeParseException | InputMismatchException e) {
             System.out.println();
             System.out.println("⛔ Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
             System.out.println("--------------------");
@@ -89,9 +89,9 @@ public class RunByUser {
 
     private void searchRoomByPrice() throws InputMismatchException {
         System.out.println("Nhập giá dưới:");
-        double lowerPrice = scanner.nextDouble();
+        double lowerPrice = Double.parseDouble(scanner.nextLine());
         System.out.println("Nhập giá trên:");
-        double abovePrice = scanner.nextDouble();
+        double abovePrice = Double.parseDouble(scanner.nextLine());
         if (lowerPrice > abovePrice) {
             System.out.println("⛔ Nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
