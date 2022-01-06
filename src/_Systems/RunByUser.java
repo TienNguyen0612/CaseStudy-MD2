@@ -25,7 +25,7 @@ public class RunByUser {
                 int choice = choiceOfUser();
                 if (choice < 0 || choice > 4) {
                     System.out.println();
-                    System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
+                    System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
                 }
                 switch (choice) {
@@ -45,7 +45,7 @@ public class RunByUser {
                         if (room != null) {
                             billManager.addBillByUser(room);
                         } else {
-                            System.out.println("Phòng trên không tồn tại !!!");
+                            System.out.println("⛔ Phòng trên không tồn tại !!!");
                             System.out.println("--------------------");
                         }
                         break;
@@ -56,7 +56,7 @@ public class RunByUser {
             } while (true);
         } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println();
-            System.out.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
+            System.out.println("⛔ Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
             menuOfUser();
@@ -74,13 +74,13 @@ public class RunByUser {
         System.out.println("║>[4]. Đặt phòng                                    ║");
         System.out.println("║>[0]. Đăng xuất                                    ║");
         System.out.println("╚===================================================╝");
-        System.out.println("Mời bạn nhập lựa chọn:");
+        System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
         return Integer.parseInt(scanner.nextLine());
     }
 
     private void exitOfUser() {
         System.out.println();
-        System.out.println("Đã thoát khỏi hệ thống USER !!!");
+        System.out.println("⛔ Đã thoát khỏi hệ thống USER !!!");
         System.out.println("--------------------");
         System.out.println();
         (new Login()).loginSystems();
@@ -93,7 +93,7 @@ public class RunByUser {
         System.out.println("Nhập giá trên:");
         double abovePrice = scanner.nextDouble();
         if (lowerPrice > abovePrice) {
-            System.out.println("Nhập sai dữ liệu, mời nhập lại !!!");
+            System.out.println("⛔ Nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             return;
         }

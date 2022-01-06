@@ -38,6 +38,10 @@ public class UserManager {
         }
     }
 
+    public void displayAll() {
+        userList.forEach(System.out::println);
+    }
+
     public void deleteByName(String account) {
         User user = null;
         for (User user1 : userList) {

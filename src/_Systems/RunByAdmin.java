@@ -9,7 +9,6 @@ import _ModelManager.RoomManager;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RunByAdmin {
@@ -25,9 +24,9 @@ public class RunByAdmin {
         try {
             do {
                 int choice = choiceOfAdmin();
-                if (choice < 0 || choice > 4) {
+                if (choice < 0 || choice > 5) {
                     System.out.println();
-                    System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
+                    System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
                 }
                 switch (choice) {
@@ -45,6 +44,9 @@ public class RunByAdmin {
                         String accountDelete = scan.nextLine();
                         userManager.deleteByName(accountDelete);
                         break;
+                    case 5:
+                        userManager.displayAll();
+                        break;
                     case 0:
                         exitOfAdmin();
                         break;
@@ -52,7 +54,7 @@ public class RunByAdmin {
             } while (true);
         } catch (NumberFormatException e) {
             System.out.println();
-            System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
+            System.out.println("⛔ Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
             menuOfAdmin();
@@ -70,13 +72,13 @@ public class RunByAdmin {
         System.out.println("║>[4]. Xóa USER                                     ║");
         System.out.println("║>[0]. Đăng xuất                                    ║");
         System.out.println("╚===================================================╝");
-        System.out.println("Mời bạn nhập lựa chọn:");
+        System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
         return Integer.parseInt(scan.nextLine());
     }
 
     private void exitOfAdmin() {
         System.out.println();
-        System.out.println("Đã thoát khỏi hệ thống ADMIN !!!");
+        System.out.println("⛔ Đã thoát khỏi hệ thống ADMIN !!!");
         System.out.println("--------------------");
         System.out.println();
         (new Login()).loginSystems();
@@ -98,11 +100,11 @@ public class RunByAdmin {
                 System.out.println("║>[6]. Kiểm tra trạng thái phòng                    ║");
                 System.out.println("║>[0]. Thoát                                        ║");
                 System.out.println("╚===================================================╝");
-                System.out.println("Mời bạn nhập lựa chọn:");
+                System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
                 int choiceRoom = Integer.parseInt(scan.nextLine());
                 if (choiceRoom < 0 || choiceRoom > 7) {
                     System.out.println();
-                    System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
+                    System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
                     System.out.println();
                     menuRoomManager();
@@ -130,7 +132,7 @@ public class RunByAdmin {
                         System.out.println("Nhập giá trên:");
                         double abovePrice = scan.nextDouble();
                         if (lowerPrice > abovePrice) {
-                            System.out.println("Nhập sai dữ liệu, mời nhập lại !!!");
+                            System.out.println("⛔ Nhập sai dữ liệu, mời nhập lại !!!");
                             System.out.println("--------------------");
                             return;
                         }
@@ -157,7 +159,7 @@ public class RunByAdmin {
             } while (true);
         } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println();
-            System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
+            System.out.println("⛔ Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
             menuRoomManager();
@@ -178,7 +180,7 @@ public class RunByAdmin {
                 System.out.println("║>[5]. Tổng doanh thu của tháng                     ║");
                 System.out.println("║>[0]. Thoát                                        ║");
                 System.out.println("╚===================================================╝");
-                System.out.println("Mời bạn nhập lựa chọn:");
+                System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
                 int choiceBill = Integer.parseInt(scan.nextLine());
                 switch (choiceBill) {
                     case 1:
@@ -188,7 +190,7 @@ public class RunByAdmin {
                         if (room != null) {
                             billManager.addBill(room);
                         } else {
-                            System.out.println("Phòng trên không tồn tại !!!");
+                            System.out.println("⛔ Phòng trên không tồn tại !!!");
                             System.out.println("--------------------");
                         }
                         break;
@@ -211,7 +213,7 @@ public class RunByAdmin {
                         System.out.println("Nhập vào năm:");
                         int year = scan.nextInt();
                         if (month < 1 || month > 12 || year < 2015) {
-                            System.out.println("Nhập sai dữ liệu, mời nhập lại !!!");
+                            System.out.println("⛔ Nhập sai dữ liệu, mời nhập lại !!!");
                             System.out.println("--------------------");
                         } else {
                             billManager.getTotalBillInAMonth(month, year);
@@ -224,7 +226,7 @@ public class RunByAdmin {
             } while (true);
         } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println();
-            System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
+            System.out.println("⛔ Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
             menuBillManager();
