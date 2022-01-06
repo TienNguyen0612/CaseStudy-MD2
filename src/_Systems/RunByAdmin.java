@@ -25,7 +25,6 @@ public class RunByAdmin {
         try {
             do {
                 int choice = choiceOfAdmin();
-                scan.nextLine();
                 if (choice < 0 || choice > 4) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
@@ -51,12 +50,11 @@ public class RunByAdmin {
                         break;
                 }
             } while (true);
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             System.out.println();
             System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
-            scan.nextLine();
             menuOfAdmin();
         }
     }
@@ -73,7 +71,7 @@ public class RunByAdmin {
         System.out.println("║>[0]. Đăng xuất                                    ║");
         System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");
-        return scan.nextInt();
+        return Integer.parseInt(scan.nextLine());
     }
 
     private void exitOfAdmin() {
@@ -101,8 +99,7 @@ public class RunByAdmin {
                 System.out.println("║>[0]. Thoát                                        ║");
                 System.out.println("╚===================================================╝");
                 System.out.println("Mời bạn nhập lựa chọn:");
-                int choiceRoom = scan.nextInt();
-                scan.nextLine();
+                int choiceRoom = Integer.parseInt(scan.nextLine());
                 if (choiceRoom < 0 || choiceRoom > 7) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
@@ -158,7 +155,7 @@ public class RunByAdmin {
                         break;
                 }
             } while (true);
-        } catch (InputMismatchException | DateTimeParseException e) {
+        } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println();
             System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
@@ -182,8 +179,7 @@ public class RunByAdmin {
                 System.out.println("║>[0]. Thoát                                        ║");
                 System.out.println("╚===================================================╝");
                 System.out.println("Mời bạn nhập lựa chọn:");
-                int choiceBill = scan.nextInt();
-                scan.nextLine();
+                int choiceBill = Integer.parseInt(scan.nextLine());
                 switch (choiceBill) {
                     case 1:
                         System.out.println("Nhập vào phòng muốn thuê:");
@@ -226,7 +222,7 @@ public class RunByAdmin {
                         break;
                 }
             } while (true);
-        } catch (InputMismatchException | NullPointerException | DateTimeParseException e) {
+        } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println();
             System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");

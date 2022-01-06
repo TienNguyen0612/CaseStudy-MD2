@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class UserManager {
-    private final ArrayList<User> userList;
+    private ArrayList<User> userList;
     private final IOFile<User> ioFile = new IOFile<>();
     private final String PATHNAME_OF_USER = "FileData/userinfor";
 
@@ -23,6 +23,7 @@ public class UserManager {
     }
 
     public void displayUserList() {
+        userList = ioFile.readFile(PATHNAME_OF_USER);
         if (userList.isEmpty()) {
             System.out.println("Chưa có người dùng nào đăng ký !!!");
             System.out.println("--------------------");
@@ -56,18 +57,7 @@ public class UserManager {
     }
 
     public void setListUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
-//        ArrayList<User> users;
-//        if (checkFile()) {
-//            users = userList;
-//        } else {
-//            users = getUserList();
-//        }
         userList.add(new User(accountUser, passwordUser, name, age, address, phoneNumber, email));
         ioFile.writeFile(userList, PATHNAME_OF_USER);
     }
-
-//    public boolean checkFile() {
-//        ArrayList<User> userList = getUserList();
-//        return userList == null;
-//    }
 }

@@ -26,40 +26,42 @@ public class Login {
     public void loginSystems() {
         try {
             menuLogin();
-        } catch (InputMismatchException e) {
+        } catch (NullPointerException | NumberFormatException e) {
             System.out.println();
-            System.out.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
+            System.out.println("Bạn nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
             System.out.println();
-            loginSystems();
+           loginSystems();
         }
     }
 
     //Menu
-    private void menuLogin() {
-        System.out.println();
-        System.out.println("       CHÀO MỪNG BẠN ĐẾN VỚI NHÀ NGHỈ SEN HỒNG       ");
-        System.out.println();
-        System.out.println("╔===================================================╗");
-        System.out.println("║       ▂ ▃ ▅ ▆ █ QUẢN LÝ KHÁCH SẠN █ ▆ ▅ ▃ ▂       ║");
-        System.out.println("╠===================================================╣");
-        System.out.println("║>[1]. Đăng nhập                                    ║");
-        System.out.println("║>[2]. Đăng ký                                      ║");
-        System.out.println("║>[0]. Thoát                                        ║");
-        System.out.println("╚===================================================╝");
-        System.out.println("Mời bạn nhập lựa chọn:");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        switch (choice) {
-            case 1:
-                loginManager();
-                break;
-            case 2:
-                registerAccountUser();
-                break;
-            case 0:
-                System.exit(0);
-        }
+    private void menuLogin() throws NumberFormatException {
+        do {
+            System.out.println();
+            System.out.println("       CHÀO MỪNG BẠN ĐẾN VỚI NHÀ NGHỈ SEN HỒNG       ");
+            System.out.println();
+            System.out.println("╔===================================================╗");
+            System.out.println("║       ▂ ▃ ▅ ▆ █ QUẢN LÝ KHÁCH SẠN █ ▆ ▅ ▃ ▂       ║");
+            System.out.println("╠===================================================╣");
+            System.out.println("║>[1]. Đăng nhập                                    ║");
+            System.out.println("║>[2]. Đăng ký                                      ║");
+            System.out.println("║>[0]. Thoát                                        ║");
+            System.out.println("╚===================================================╝");
+            System.out.println("Mời bạn nhập lựa chọn:");
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    loginManager();
+                    break;
+                case 2:
+                    registerAccountUser();
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+            }
+        } while (true);
     }
 
     //Đăng nhập
@@ -93,12 +95,6 @@ public class Login {
     }
 
     private void checkAccountUser(String account, String password) {
-//        if (accountUserManager.checkFile()) {
-//            System.out.println();
-//            System.out.println("Tài khoản USER chưa tồn tại. Vui lòng kiểm tra lại !!!");
-//            System.out.println("--------------------");
-//            System.out.println();
-//            loginSystems();
         if (checkLoginAccountUser(account, password)) {
             System.out.println();
             System.out.println("Đăng nhập hệ thống bởi USER thành công !!!");
@@ -239,12 +235,6 @@ public class Login {
     }
 
     private void checkAccountUser(String accountUser, String passwordUser, String name, int age, String address, String phoneNumber, String email) {
-//        if (accountUserManager.checkFile()) {
-//            writeAccountUserAndUser(accountUser, passwordUser, name, age, address, phoneNumber, email);
-//            System.out.println();
-//            System.out.println("Đăng ký thành công. Mời đăng nhập vào hệ thống !!!");
-//            System.out.println("--------------------");
-//            System.out.println();
         if (checkAccount(accountUser)) {
             System.out.println();
             System.out.println("Tài khoản đã tồn tại. Vui lòng đăng ký lại !!!");

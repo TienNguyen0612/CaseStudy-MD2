@@ -23,18 +23,7 @@ public class AccountUserManager {
     }
 
     public void setListUser(String account, String password) {
-//        ArrayList<AccountUser> accountUsers;
-//        if (checkFile()) {
-//            accountUsers = accountUserList;
-//        } else {
-//            accountUsers = getAccountUserList();
-//        }
         accountUserList.add(new AccountUser(account, password));
         ioFile.writeFile(accountUserList, PATHNAME_OF_ACCOUNT_USER);
     }
-
-//    public boolean checkFile() {
-//        ArrayList<AccountUser> accountUserList = getAccountUserList();
-//        return accountUserList == null;
-//    }
 }

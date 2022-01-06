@@ -23,7 +23,6 @@ public class RunByUser {
         try {
             do {
                 int choice = choiceOfUser();
-                scanner.nextLine();
                 if (choice < 0 || choice > 4) {
                     System.out.println();
                     System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
@@ -55,7 +54,7 @@ public class RunByUser {
                         break;
                 }
             } while (true);
-        } catch (InputMismatchException | DateTimeParseException | NullPointerException e) {
+        } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println();
             System.out.println("Bạn đã nhập sai dữ liệu, vui lòng nhập lại !!!");
             System.out.println("--------------------");
@@ -76,7 +75,7 @@ public class RunByUser {
         System.out.println("║>[0]. Đăng xuất                                    ║");
         System.out.println("╚===================================================╝");
         System.out.println("Mời bạn nhập lựa chọn:");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     private void exitOfUser() {
