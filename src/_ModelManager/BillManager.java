@@ -168,6 +168,29 @@ public class BillManager {
         }
     }
 
+    public void displayBillListByRoom(String roomName) {
+        ArrayList<Bill> billsRoom = new ArrayList<>();
+        for (Bill bill : billList) {
+            if (bill.getRoom().getRoomName().equals(roomName)) {
+                billsRoom.add(bill);
+            }
+        }
+        if (billsRoom.isEmpty()) {
+            System.out.println("Không tìm thấy phòng nào !!!");
+            System.out.println("--------------------");
+        } else {
+            billsRoom.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
+            System.out.println("-------------------------------------------------------------------------------- ");
+            System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15s|\n", "Id", "Room", "Customer", "Staff", "Check-in", "Check-out", "Total");
+            System.out.println("-------------------------------------------------------------------------------- ");
+            for (Bill bill : billsRoom) {
+                System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15.2f|", bill.getIdBill(), bill.getRoom().getRoomName(), bill.getCustomerName(), bill.getStaffName(), bill.getStartDate(), bill.getEndDate(), bill.getTotalPrice());
+                System.out.println();
+                System.out.println("-------------------------------------------------------------------------------- ");
+            }
+        }
+    }
+
     public void getTotalBillInAMonth(int month, int year) {
         double totalBill = 0;
         for (Bill bill : billList) {
@@ -181,7 +204,10 @@ public class BillManager {
 
     public void checkRoomStatus(String name, LocalDate beforeDate, LocalDate afterDate) {
         ArrayList<Bill> billArrayList = new ArrayList<>();
-        int check = 0;
+        Bill firstBill = null;
+        Bill lastBill = null;
+        int checkDate = 0;
+        int checkName = 0;
         if (beforeDate.isAfter(afterDate)) {
             System.out.println("Nhập sai dữ liệu, mời nhập lại !!!");
             System.out.println("--------------------");
@@ -189,34 +215,102 @@ public class BillManager {
         }
         for (Bill bill : billList) {
             if (bill.getRoom().getRoomName().equals(name)) {
-                billArrayList.add(bill);
-                check += 1;
+                if (bill.getStartDate().isBefore(beforeDate) && bill.getEndDate().isAfter(beforeDate)) {
+                    firstBill = bill;
+                } else if (bill.getStartDate().isBefore(afterDate) && bill.getEndDate().isAfter(afterDate)) {
+                    lastBill = bill;
+                } else if (bill.getStartDate().isEqual(beforeDate) || (bill.getStartDate().isAfter(beforeDate) && bill.getEndDate().isBefore(afterDate)) || bill.getEndDate().isEqual(afterDate)) {
+                    billArrayList.add(bill);
+                    checkDate++;
+                }
+                checkName++;
             }
         }
-        if (check == 0) {
-            System.out.println("- Phòng đã thuê hoặc đang sửa !!!");
-            System.out.println("- Không tìm thấy phòng !!!");
+        if (checkName == 0) {
+            System.out.println("⛔ Không tìm thấy phòng !!!");
             System.out.println("--------------------");
         } else {
-            billArrayList.removeIf(bill -> bill.getEndDate().isBefore(beforeDate) || bill.getStartDate().isAfter(afterDate)
-                    || bill.getEndDate().isEqual(beforeDate) || bill.getStartDate().isEqual(afterDate));
             System.out.println("Trạng thái phòng " + name + " từ " + beforeDate + " đến " + afterDate + ":");
-            if (billArrayList.isEmpty()) {
-                System.out.println("Đang trống !!!");
-                System.out.println("--------------------");
+            if (checkDate == 0) {
+                if (firstBill == null) {
+                    if (lastBill == null) {
+                        System.out.println("⛔ Đang trống !!!");
+                        System.out.println("--------------------");
+                    } else {
+                        System.out.println("----------------------------------------------------");
+                        System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
+                        System.out.println("----------------------------------------------------");
+                        System.out.printf("| %-15s| %-15s| %-15s|", lastBill.getStartDate(), afterDate, "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                    }
+                } else {
+                    System.out.println("----------------------------------------------------");
+                    System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
+                    System.out.println("----------------------------------------------------");
+                    if (lastBill == null) {
+                        System.out.printf("| %-15s| %-15s| %-15s|", beforeDate, firstBill.getEndDate(), "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                    } else {
+                        System.out.printf("| %-15s| %-15s| %-15s|", beforeDate, firstBill.getEndDate(), "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                        System.out.printf("| %-15s| %-15s| %-15s|", lastBill.getStartDate(), afterDate, "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                    }
+                }
             } else {
                 billArrayList.sort(Comparator.comparingInt(o -> o.getStartDate().getDayOfMonth()));
                 System.out.println("----------------------------------------------------");
                 System.out.printf("| %-15s| %-15s| %-15s|\n", "Từ ngày", "Đến ngày", "Trạng thái");
                 System.out.println("----------------------------------------------------");
-                for (Bill bill : billArrayList) {
-                    System.out.printf("| %-15s| %-15s| %-15s|", bill.getStartDate(), bill.getEndDate(), "Đã thuê");
+                if (firstBill == null) {
+                    if (lastBill == null) {
+                        for (Bill bill : billArrayList) {
+                            System.out.printf("| %-15s| %-15s| %-15s|", bill.getStartDate(), bill.getEndDate(), "ĐÃ THUÊ");
+                            System.out.println();
+                            System.out.println("----------------------------------------------------");
+                        }
+                    } else {
+                        for (Bill bill : billArrayList) {
+                            System.out.printf("| %-15s| %-15s| %-15s|", bill.getStartDate(), bill.getEndDate(), "ĐÃ THUÊ");
+                            System.out.println();
+                            System.out.println("----------------------------------------------------");
+                        }
+                        System.out.printf("| %-15s| %-15s| %-15s|", lastBill.getStartDate(), afterDate, "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                    }
+                } else {
+                    System.out.printf("| %-15s| %-15s| %-15s|", beforeDate, firstBill.getEndDate(), "ĐÃ THUÊ");
                     System.out.println();
                     System.out.println("----------------------------------------------------");
+                    for (Bill bill : billArrayList) {
+                        System.out.printf("| %-15s| %-15s| %-15s|", bill.getStartDate(), bill.getEndDate(), "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                    }
+                    if (lastBill != null) {
+                        System.out.printf("| %-15s| %-15s| %-15s|", lastBill.getStartDate(), afterDate, "ĐÃ THUÊ");
+                        System.out.println();
+                        System.out.println("----------------------------------------------------");
+                    }
                 }
             }
         }
+    }
 
+    public Bill getBill(String roomName, LocalDate orderDate) {
+        Bill bill = null;
+        for (Bill bill1 : billList) {
+            boolean checkOrderDate = (bill1.getStartDate().isEqual(orderDate) || bill1.getEndDate().isEqual(orderDate) || (bill1.getStartDate().isBefore(orderDate) && bill1.getEndDate().isAfter(orderDate)));
+            if (bill1.getRoom().getRoomName().equals(roomName) && checkOrderDate) {
+                bill = bill1;
+            }
+        }
+        return bill;
     }
 
     public void writeValue() {

@@ -178,12 +178,13 @@ public class RunByAdmin {
                 System.out.println("║>[2]. Sửa hóa đơn                                  ║");
                 System.out.println("║>[3]. Xóa hóa đơn                                  ║");
                 System.out.println("║>[4]. Hiển thị danh sách hóa đơn                   ║");
-                System.out.println("║>[5]. Tổng doanh thu của tháng                     ║");
+                System.out.println("║>[5]. Hiển thị danh sách hóa đơn theo phòng        ║");
+                System.out.println("║>[6]. Tổng doanh thu của tháng                     ║");
                 System.out.println("║>[0]. Thoát                                        ║");
                 System.out.println("╚===================================================╝");
                 System.out.println("[\uD83D\uDD11] Nhập lựa chọn:");
                 int choiceBill = Integer.parseInt(scan.nextLine());
-                if (choiceBill < 0 || choiceBill > 5) {
+                if (choiceBill < 0 || choiceBill > 6) {
                     System.out.println();
                     System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
@@ -216,10 +217,15 @@ public class RunByAdmin {
                         billManager.displayBillList();
                         break;
                     case 5:
+                        System.out.println("Nhập tên phòng:");
+                        String roomNameSearch = scan.nextLine();
+                        billManager.displayBillListByRoom(roomNameSearch);
+                        break;
+                    case 6:
                         System.out.println("Nhập vào tháng:");
-                        int month = scan.nextInt();
+                        int month = Integer.parseInt(scan.nextLine());
                         System.out.println("Nhập vào năm:");
-                        int year = scan.nextInt();
+                        int year = Integer.parseInt(scan.nextLine());
                         if (month < 1 || month > 12 || year < 2015) {
                             System.out.println("⛔ Nhập sai dữ liệu, mời nhập lại !!!");
                             System.out.println("--------------------");
