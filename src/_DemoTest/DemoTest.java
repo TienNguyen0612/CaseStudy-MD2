@@ -9,6 +9,6 @@ public class DemoTest {
         ServiceManager serviceManager = new ServiceManager();
         Scanner scanner = new Scanner(System.in);
 
-
+        serviceManager.displayServiceList();
     }
 }

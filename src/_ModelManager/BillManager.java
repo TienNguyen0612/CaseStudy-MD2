@@ -191,15 +191,37 @@ public class BillManager {
         }
     }
 
-    public void getTotalBillInAMonth(int month, int year) {
+    public double getBillCheckOut(String roomName, LocalDate checkInDate) {
+        double totalBill = 0;
+        for (Bill bill : billList) {
+            if (bill.getRoom().getRoomName().equals(roomName) && bill.getStartDate().isEqual(checkInDate)) {
+                totalBill += bill.getTotalPrice();
+            }
+        }
+        return totalBill;
+    }
+
+    public void displayBillCheckOut(String roomName, LocalDate checkInDate) {
+        System.out.println("--------------------------------------------------------------------------------");
+        System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15s|\n", "Id", "Room", "Customer", "Staff", "Check-in", "Check-out", "Total");
+        System.out.println("--------------------------------------------------------------------------------");
+        for (Bill bill : billList) {
+            if (bill.getRoom().getRoomName().equals(roomName) && bill.getStartDate().isEqual(checkInDate)) {
+                System.out.printf("| %-5s| %-5s| %-10s| %-10s| %-10s| %-10s| %-15.2f|", bill.getIdBill(), bill.getRoom().getRoomName(), bill.getCustomerName(), bill.getStaffName(), bill.getStartDate(), bill.getEndDate(), bill.getTotalPrice());
+                System.out.println();
+                System.out.println("--------------------------------------------------------------------------------");
+            }
+        }
+    }
+
+    public double getTotalBillInAMonth(int month, int year) {
         double totalBill = 0;
         for (Bill bill : billList) {
             if (bill.getStartDate().getMonth().getValue() == month && bill.getStartDate().getYear() == year) {
                 totalBill += bill.getTotalPrice();
             }
         }
-        System.out.println("Tổng doanh thu tháng " + month + "/" + year + ": " + totalBill);
-        System.out.println("--------------------");
+        return totalBill;
     }
 
     public void checkRoomStatus(String name, LocalDate beforeDate, LocalDate afterDate) {

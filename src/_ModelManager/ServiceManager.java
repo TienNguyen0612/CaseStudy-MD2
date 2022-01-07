@@ -105,10 +105,10 @@ public class ServiceManager {
         }
     }
 
-    public Service getService(String serviceName) {
+    public Service getService(int id) {
         Service service = null;
         for (Service service1 : serviceList) {
-            if (service1.getServiceName().equals(serviceName)) {
+            if (service1.getIdService() == id) {
                 service = service1;
             }
         }

@@ -7,7 +7,6 @@ import _WriteReadFile.IOFile;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,13 +58,37 @@ public class OrderServiceManager {
         }
     }
 
-    public void displayByRoomName(String roomName, LocalDate startDate, LocalDate endDate) {
+    public double getTotalInAMonth(int month, int year) {
+        double total = 0;
+        for (OrderService orderService : orderServiceList) {
+            double getTotalOrderService = orderService.getQuantity() * orderService.getService().getPriceOfService();
+            if (orderService.getOrderDate().getMonth().getValue() == month && orderService.getOrderDate().getYear() == year) {
+                total += getTotalOrderService;
+            }
+        }
+        return total;
+    }
+
+    public double getTotalCheckOut(String roomName, LocalDate startDate) {
+        double totalCheckOut = 0;
+        for (OrderService orderService : orderServiceList) {
+            boolean checkRoomName = orderService.getBill().getRoom().getRoomName().equals(roomName);
+            boolean checkDate = orderService.getBill().getStartDate().isEqual(startDate);
+            double getTotalOrderService = orderService.getQuantity() * orderService.getService().getPriceOfService();
+            if (checkRoomName && checkDate) {
+                totalCheckOut += getTotalOrderService;
+            }
+        }
+        return totalCheckOut;
+    }
+
+    public void displayByRoomName(String roomName, LocalDate startDate) {
         System.out.println("---------------------------------------------------------------------------------");
         System.out.printf("| %-10s| %-20s| %-15s| %-10s| %-15s|\n", "Ngày", "Tên dịch vụ", "Giá tiền", "Số lượng", "Thành tiền");
         System.out.println("---------------------------------------------------------------------------------");
         for (OrderService orderService : orderServiceList) {
             boolean checkRoomName = orderService.getBill().getRoom().getRoomName().equals(roomName);
-            boolean checkDate = orderService.getBill().getStartDate().isEqual(startDate) && orderService.getBill().getEndDate().isEqual(endDate);
+            boolean checkDate = orderService.getBill().getStartDate().isEqual(startDate);
             double getTotalOrderService = orderService.getQuantity() * orderService.getService().getPriceOfService();
             if (checkRoomName && checkDate) {
                 System.out.printf("| %-10s| %-20s| %-15.2f| %-10s| %-15.2f|\n", orderService.getOrderDate(), orderService.getService().getServiceName(),
