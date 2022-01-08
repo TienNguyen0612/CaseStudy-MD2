@@ -392,7 +392,10 @@ public class RunByAdmin {
                         String deleteRoomName = scan.nextLine();
                         System.out.println("Nhập tên dịch vụ:");
                         String deleteService = scan.nextLine();
-                        orderServiceManager.deleteByRoomNameAndServiceName(deleteRoomName, deleteService);
+                        System.out.println("Nhập ngày đặt dịch vụ(dd-mm-yyyy):");
+                        String orderDate1 = scan.nextLine();
+                        LocalDate orderDate2 = LocalDate.parse(orderDate1, DateTimeFormatter.ofPattern("dd-LL-yyyy"));
+                        orderServiceManager.deleteByRoomNameAndServiceName(deleteRoomName, deleteService, orderDate2);
                         break;
                     case 3:
                         System.out.println("Nhập tên phòng:");

@@ -40,10 +40,10 @@ public class OrderServiceManager {
         System.out.println("--------------------");
     }
 
-    public void deleteByRoomNameAndServiceName(String roomName, String serviceName) {
+    public void deleteByRoomNameAndServiceName(String roomName, String serviceName, LocalDate orderDate) {
         OrderService orderService = null;
         for (OrderService order : orderServiceList) {
-            if (order.getBill().getRoom().getRoomName().equals(roomName) && order.getService().getServiceName().equalsIgnoreCase(serviceName)) {
+            if (order.getBill().getRoom().getRoomName().equals(roomName) && order.getService().getServiceName().equalsIgnoreCase(serviceName) && order.getOrderDate().isEqual(orderDate)) {
                 orderService = order;
             }
         }
